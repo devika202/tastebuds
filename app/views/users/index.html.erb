@@ -1,0 +1,22 @@
+<h1 class="text-center mt-4">USERS LIST</h1><br>
+<div class="container">
+  <% @users.each do |user| %>
+    <div class="card position-relative">
+      <div class="card-body">
+        <h5 class="card-title"><%= link_to "#{user.firstname} #{user.lastname}", user_path(user), class: "text-success" %></h5>
+        <p class="card-text"><%= truncate(user.email, length: 200) %></p>
+      </div>
+      <div class="card-footer text-muted">
+        <small>Created <%= time_ago_in_words(user.created_at) %> ago, edited <%= time_ago_in_words(user.updated_at) %> ago</small>
+        <div class="position-absolute bottom-0 end-0">
+          <%= link_to "Edit", edit_user_registration_path, class: "btn btn-outline-warning me-2" %>
+          <%= link_to 'Delete', user_registration_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+        </div>
+      </div>
+    </div><br>
+  <% end %>
+</div>
+<br><br>
+<div class="flickr_pagination">
+  <%= will_paginate @users, :container => false  %>    
+</div>

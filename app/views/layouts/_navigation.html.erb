@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to "TASTE BUDS", root_path, class:"navbar-brand", id:"logo" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+      <ul class="navbar-nav mb-2 mb-lg-0 ">
+        <li class="nav-item dropdown">
+          <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenu" aria-expanded="false" data-turbo="false">
+            PRODUCTS
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdownMenu" data-turbo="false">
+            <% if user_signed_in? && current_user.admin? %>
+              <%= link_to "Create new product",new_product_path,class:"dropdown-item" %>
+            <% end %>
+            <%= link_to "View products",products_path,class:"dropdown-item" %>
+          </div>                     
+        </li>
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdown"  aria-expanded="false">
+              <%= "(Admin)" if current_user.admin? %> PROFILE <%= current_user.username %>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+              <%= link_to "View your profile", users_path, class: "dropdown-item" %>
+              <%= link_to "Edit your profile", edit_user_registration_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+
+          <% if user_signed_in? && current_user.admin? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                CATEGORIES
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                <%= link_to "Create new category",new_category_path,class:"dropdown-item" %>
+                <%= link_to "View categories",categories_path,class:"dropdown-item" %>
+            </li>
+          <% end %>
+        <% end %>
+
+        <% if user_signed_in? && current_user.admin? %>
+          <li class="nav-item font-weight-bold ">
+             <%= link_to "USERS", users_path, class:"nav-link text-light " %>
+           </li>
+        <% end %>
+      </ul>
+
+      <div class="d-flex">
+        &nbsp; &nbsp; &nbsp; &nbsp;
+        <% if current_page?(products_path) %>
+                    <form class="d-flex me-3">
+                      <%= search_form_for @search do |f| %>
+                        <%= f.text_field :product_title_cont, class: 'form-control me-2 text-dark', placeholder: 'search by product title' %>&nbsp;
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                      <% end %>
+                    </form>
+                  <% end %>
+
+                  <% if user_signed_in? %>
+                  <ul class="navbar-nav mb-2 mb-lg-0">
+                      <li class="nav-item font-weight-bold ">
+                        <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %>
+                      </li>
+                  </ul>
+                  <% end %>
+            </div>
+        </div>
+    </div>
+</nav>
+

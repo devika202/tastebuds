@@ -1,0 +1,18 @@
+<h2 class="text-center mt-4">
+USER DETAILS</h2>
+<%= gravatar_for @user,size:200 %>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-10"><br>
+            <p><strong>FIRSTNAME :</strong> <%= @user.firstname %></p>
+            <p><strong>LASTNAME :</strong> <%= @user.lastname %></p>
+            <p><strong>ADDRESS :</strong> <%= @user.address %></p>
+            <p><strong>PHONE :</strong> <%= @user.phone %></p>
+            <p><strong>E-MAIL :</strong> <%= @user.email %></p>
+            <p><strong>USERNAME :</strong> <%= @user.username %></p><br>
+            <%= link_to 'Edit', edit_user_registration_path, class: "btn btn-primary" %>
+            <%= link_to 'Delete', user_registration_path, method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-danger" %>
+            <%= link_to 'Back',root_path, class: "btn btn-success"  %>
+        </div>
+    </div>
+</div>
