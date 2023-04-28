@@ -1,5 +1,5 @@
-<% if user_signed_in? %>
-  <h2 class="text-center mt-4">
+
+<h2 class="text-center mt-4">
     <%= @product.product_title %>
   </h2>   
   <div class="container">   
@@ -27,9 +27,15 @@
         <% if user_signed_in? && current_user.admin? %>
           <%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" %>
           <%= link_to 'Delete', product_path(@product), method: :delete, data: { confirm: "Are you sure?" },class: "btn btn-danger" %>
+        <% else %>
+          <%= form_for @cart do |f| %>
+            <%= f.hidden_field :product_id, value: @product.id %>
+            <%= f.submit 'Add to Cart', class: 'btn btn-primary' %>
+          <% end %>
         <% end %>
+        
         <%= link_to 'Back', products_path, class: "btn btn-success" %>
       </div>
     </div>
   </div>
-<% end %>
+

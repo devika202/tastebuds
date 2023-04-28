@@ -7,12 +7,13 @@ class ProductsController < ApplicationController
   def show
       @product = Product.includes(:categories).find(params[:id])
       @search = Product.ransack(params[:q])
+      @cart = current_user.cart || Cart.new(user: current_user)
   end
 
 
   def index
     @search = Product.includes(:categories).ransack(params[:q])
-    @products = @search.result.includes(:categories).paginate(page: params[:page], per_page: 3)
+    @products = @search.result.includes(:categories).paginate(page: params[:page], per_page: 9)
     @categories = Category.all
   end
   
