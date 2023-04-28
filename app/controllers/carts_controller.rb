@@ -13,24 +13,34 @@ class CartsController < ApplicationController
       @cart = current_user.cart
     end
     
+    def update
+        @cart = current_user.cart || Cart.new(user: current_user)
+        @product = Product.find(params[:cart][:product_id])
+        @cart.add_item(@product.id)
+        redirect_to cart_path(@cart)
+    end
+      
+
     def add_item
-      @cart = current_user.cart
-      @product = Product.find(params[:product_id])
-      @cart.add_item(@product.id)
-      redirect_to @product, notice: 'Product added to cart'
+        @cart = current_user.cart || Cart.create(user: current_user)
+        @product = Product.find(params[:product_id])
+        @cart.add_item(@product.id)
+        redirect_to @product, notice: 'Product added to cart'
     end
-    
+
+      
     def remove_item
-      @cart = current_user.cart
-      @product = Product.find(params[:product_id])
-      @cart.remove_item(@product.id)
-      redirect_to @cart, notice: 'Product removed from cart'
+        @cart = current_user.cart
+        @cart.remove_item(params[:id])
+        redirect_to cart_path
     end
-    
-    def clear
-      @cart = current_user.cart
-      @cart.clear
-      redirect_to @cart, notice: 'Cart cleared'
+      
+    def clear_cart
+        @cart = current_user.cart
+        @cart.cart_items.destroy_all
+        redirect_to cart_path(@cart)
     end
+      
+      
   end
   

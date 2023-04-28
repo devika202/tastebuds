@@ -4,10 +4,12 @@ class Cart < ApplicationRecord
     has_many :products, through: :cart_items
     
     def add_item(product_id)
-      item = cart_items.find_or_initialize_by(product_id: product_id)
-      item.quantity += 1
-      item.save!
-    end
+        item = cart_items.find_or_initialize_by(product_id: product_id)
+        item.quantity ||= 0 # ensure quantity is not nil
+        item.quantity += 1
+        item.save!
+      end
+      
     
     def remove_item(product_id)
       item = cart_items.find_by(product_id: product_id)

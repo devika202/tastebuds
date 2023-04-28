@@ -3,13 +3,15 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :require_admin, only: [:edit,:new, :update, :destroy]
 
-  
   def show
-      @product = Product.includes(:categories).find(params[:id])
-      @search = Product.ransack(params[:q])
+    @product = Product.includes(:categories).find(params[:id])
+    @search = Product.ransack(params[:q])
+    if user_signed_in?
       @cart = current_user.cart || Cart.new(user: current_user)
+    end
   end
-
+  
+  
 
   def index
     @search = Product.includes(:categories).ransack(params[:q])
