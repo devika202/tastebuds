@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :categories, except: [:destroy]
   resources :categories, param: :id
   resources :products, only: [:index]
+  get '/checkout', to: 'checkout#new'
+  
+  post '/checkout', to: 'checkout#create', as: 'create_order'
+  post 'orders', to: 'orders#create', as: 'order'
   resources :carts, only: [:show, :create, :update, :destroy]
   post '/search', to: 'products#search', as: 'products_search'
 end

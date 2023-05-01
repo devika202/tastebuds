@@ -54,7 +54,7 @@
 
       <div class="d-flex">
         &nbsp; &nbsp; &nbsp; &nbsp;
-       <% if current_page?(products_path) %>
+       <% if user_signed_in? %>
           <ul class="navbar-nav ml-auto">
             <% if user_signed_in? %>
               <% if current_user.cart.present? %>

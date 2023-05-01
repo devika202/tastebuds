@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_28_070813) do
+ActiveRecord::Schema.define(version: 2023_05_01_062456) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,19 @@ ActiveRecord::Schema.define(version: 2023_04_28_070813) do
     t.bigint "product_id", null: false
     t.index ["category_id"], name: "index_categories_products_on_category_id"
     t.index ["product_id"], name: "index_categories_products_on_product_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.string "shipping_name"
+    t.string "shipping_address"
+    t.string "shipping_city"
+    t.string "shipping_state"
+    t.string "shipping_zipcode"
+    t.string "payment_method"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "product_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -118,4 +131,5 @@ ActiveRecord::Schema.define(version: 2023_04_28_070813) do
   add_foreign_key "carts", "users"
   add_foreign_key "categories_products", "categories"
   add_foreign_key "categories_products", "products"
+  add_foreign_key "orders", "users"
 end
