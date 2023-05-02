@@ -1,7 +1,38 @@
-<!-- app/views/checkout/new.html.erb -->
-<h1 class="text-center mt-4">CHECKOUT</h1><br>
 <div class="container">
-<%= form_with model: @order, url: create_order_path do |f| %>
+  <h2>Cart Summary</h2>
+  <% if @cart %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Product Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Subtotal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @cart.cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= cart_item.product.product_title %></td>
+            <td><%= cart_item.quantity %></td>
+            <td><%= cart_item.product.price %></td>
+            <td><%= cart_item.total_price %></td>
+          </tr>
+        <% end %>
+        <tfoot>
+          <tr>
+            <td colspan="3">Total:</td>
+            <td><%= @cart.total_price %></td>
+          </tr>
+        </tfoot>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Your cart is currently empty.</p>
+  <% end %>
+<h1 class="text-center mt-4">CHECKOUT</h1><br>
+
+  <%= form_with model: @order, url: create_order_path do |f| %>
     <%= f.label :shipping_name %>
     <%= f.text_field :shipping_name, class: "form-control" %>
 
@@ -20,6 +51,6 @@
     <%= f.label :payment_method %>
     <%= f.select :payment_method, ["Credit Card", "PayPal", "Cash on Delivery"], {}, class: "form-control" %>
 
-    <%= f.submit "Place Order", class: "btn btn-success" %>
+    <%= f.submit "Place Order", class: "btn btn-success mt-3" %>
   <% end %>
 </div>

@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Order Confirmation</h1>
+    <p>Your order has been received.</p>
+    <ul>
+    <li>Order ID: <%= @order.id %></li>
+    <li>Total: <%= number_to_currency(@order.price,unit: "₹") %></li>
+    </ul>
+    <div class="card position-relative">
+    <div class="card-body">
+        <h5 class="card-title">Order Details</h5>
+        <p class="card-text">Shipping Address: <%= @order.shipping_address %></p>
+        <p class="card-text">Payment Method: <%= @order.payment_method %></p>
+    </div>
+    </div>
+    <div class="card position-relative">
+        <div class="card-body">
+            <h5 class="card-title">Order Items</h5>
+            <% @order.order_items.each do |item| %>
+            <div class="card-text">
+                <%= item.product.product_title %><br>
+                Quantity: <%= item.quantity %><br>
+                Price per item: <%= number_to_currency(item.product.price, unit: "₹") %><br>
+                Total price: <%= number_to_currency(item.total_price, unit: "₹") %><br>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

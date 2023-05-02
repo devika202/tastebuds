@@ -7,6 +7,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :shipping_state
       t.string :shipping_zipcode
       t.string :payment_method
+      t.string :status
       t.references :user, null: false, foreign_key: true
 
       t.timestamps
