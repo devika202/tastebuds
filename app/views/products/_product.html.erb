@@ -20,9 +20,9 @@
                       <% end %>
                     <% end %>
                   </p>
-                  <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product), class: "text-success" %> /-</h5>
+                  <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product.id), class: "text-success" %> /-</h5>
                     <div class="text-center">
-                      <%= link_to "View", product_path(product), class: "btn btn-primary " %>
+                      <%= link_to "View", product_path(product.id), class: "btn btn-primary " %>
                     </div>
                   
                 </div>

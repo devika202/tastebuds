@@ -27,6 +27,7 @@
             <%= link_to "View your profile", current_user, class: "dropdown-item" %>
               <%= link_to "Edit your profile", edit_user_registration_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
+              <%= link_to 'Order History', order_history_path, class: "dropdown-item" %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
@@ -49,40 +50,38 @@
            </li>
         <% end %>
       </ul>
-      
-        
-
       <div class="d-flex">
-        &nbsp; &nbsp; &nbsp; &nbsp;
-       <% if user_signed_in? %>
-          <ul class="navbar-nav ml-auto">
-            <% if user_signed_in? %>
-              <% if current_user.cart.present? %>
-                <li class="nav-item">
-                  <%= button_to "CART", cart_path(current_user.cart), method: :get, class: "btn btn-outline-light" %>
+        <% unless user_signed_in? && current_user.admin? %>
+          <li class="nav-item">
+            <%= link_to "CART", cart_path(current_user.cart), class: "btn btn-outline-light" %>
+            <% if current_user.cart.cart_items.empty? %>
+              <span class="badge bg-danger ms-2">Cart is empty</span>
+            <% else %>
+              <span class="badge bg-success ms-2"><%= current_user.cart.cart_items.count %> items</span>
+            <% end %>
+          </li>
+        <% end %>
+
+
+            &nbsp; &nbsp; &nbsp; &nbsp;
+            <% if current_page?(products_path) %>
+              <form class="d-flex me-3">
+                <%= search_form_for @search do |f| %>
+                  <%= f.text_field :product_title_cont, class: 'form-control me-2 text-dark', placeholder: 'search by product title' %>&nbsp;
+                  <button class="btn btn-outline-light" type="submit">Search</button>
+                <% end %>
+              </form>
+            <% end %>
+
+            <ul class="navbar-nav mb-2 mb-lg-0">
+              <% if user_signed_in? %>
+                <li class="nav-item font-weight-bold ">
+                  <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %>
                 </li>
               <% end %>
-            <% end %>
-          </ul>
-        <% end %>
-        &nbsp; &nbsp; &nbsp; &nbsp;
-        <% if current_page?(products_path) %>
-                    <form class="d-flex me-3">
-                      <%= search_form_for @search do |f| %>
-                        <%= f.text_field :product_title_cont, class: 'form-control me-2 text-dark', placeholder: 'search by product title' %>&nbsp;
-                        <button class="btn btn-outline-light" type="submit">Search</button>
-                      <% end %>
-                    </form>
-                  <% end %>
+            </ul>
+          </div>
 
-                  <% if user_signed_in? %>
-                  <ul class="navbar-nav mb-2 mb-lg-0">
-                      <li class="nav-item font-weight-bold ">
-                        <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %>
-                      </li>
-                  </ul>
-                  <% end %>
-            </div>
         </div>
     </div>
 </nav>

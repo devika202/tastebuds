@@ -1,8 +1,30 @@
-<h1>Order <%= @order.id %></h1>
-
-<p>Shipping name: <%= @order.shipping_name %></p>
-<p>Shipping address: <%= @order.shipping_address %></p>
-<p>Shipping city: <%= @order.shipping_city %></p>
-<p>Shipping state: <%= @order.shipping_state %></p>
-<p>Shipping zipcode: <%= @order.shipping_zipcode %></p>
-<p>Payment method: <%= @order.payment_method %></p>
+<div class="container"><br>
+    <h1>Order Summary</h1><br>
+    <li>Order ID: <%= @order.id %></li>
+    <li>Total: <%= number_to_currency(@order.price,unit: "₹") %></li>
+    </ul><br>
+    <div class="card position-relative">
+        <div class="card-body">
+            <h5 class="card-title">Order Details</h5>
+            <p class="card-text">Shipping Name: <%= @order.shipping_name %></p>
+            <p class="card-text">Shipping Address: <%= @order.shipping_address %></p>
+            <p class="card-text">Shipping City: <%= @order.shipping_city %></p>
+            <p class="card-text">Shipping State: <%= @order.shipping_state %></p>
+            <p class="card-text">Shipping Zipcode: <%= @order.shipping_zipcode %></p>
+            <p class="card-text">Payment Method: <%= @order.payment_method %></p>
+        </div>
+    </div>
+    <div class="card position-relative">
+        <div class="card-body">
+            <h5 class="card-title">Order Items</h5>
+            <% @order.order_items.each do |item| %>
+            <div class="card-text">
+                <%= item.product.product_title %><br>
+                Quantity: <%= item.quantity %><br>
+                Price per item: <%= number_to_currency(item.product.price, unit: "₹") %><br>
+                Total price: <%= number_to_currency(item.total_price, unit: "₹") %><br>
+            </div>
+            <% end %>
+        </div>
+    </div>
+</div>

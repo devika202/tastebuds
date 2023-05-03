@@ -1,14 +1,18 @@
-<div class="container">
-    <h1>Order Confirmation</h1>
+<div class="container"><br>
+    <h1>Order Confirmation</h1><br>
     <p>Your order has been received.</p>
     <ul>
     <li>Order ID: <%= @order.id %></li>
     <li>Total: <%= number_to_currency(@order.price,unit: "₹") %></li>
-    </ul>
+    </ul><br>
     <div class="card position-relative">
     <div class="card-body">
         <h5 class="card-title">Order Details</h5>
+        <p class="card-text">Shipping Name: <%= @order.shipping_name %></p>
         <p class="card-text">Shipping Address: <%= @order.shipping_address %></p>
+        <p class="card-text">Shipping City: <%= @order.shipping_city %></p>
+        <p class="card-text">Shipping State: <%= @order.shipping_state %></p>
+        <p class="card-text">Shipping Zipcode: <%= @order.shipping_zipcode %></p>
         <p class="card-text">Payment Method: <%= @order.payment_method %></p>
     </div>
     </div>
