@@ -21,6 +21,12 @@
   }
 }
 
+#error_explanation {
+  color: red;
+  ul li {
+    list-style: none;
+  }
+}
 
   .navbar-brand#logo {
     position: absolute;

@@ -7,13 +7,15 @@
     </ul><br>
     <div class="card position-relative">
     <div class="card-body">
-        <h5 class="card-title">Order Details</h5>
-        <p class="card-text">Shipping Name: <%= @order.shipping_name %></p>
-        <p class="card-text">Shipping Address: <%= @order.shipping_address %></p>
-        <p class="card-text">Shipping City: <%= @order.shipping_city %></p>
-        <p class="card-text">Shipping State: <%= @order.shipping_state %></p>
-        <p class="card-text">Shipping Zipcode: <%= @order.shipping_zipcode %></p>
-        <p class="card-text">Payment Method: <%= @order.payment_method %></p>
+        <h5 class="card-title"><strong>Order Details</strong></h5>
+        <p class="card-text"><strong>Shipping Name: </strong><%= @order.shipping_name %></p>
+        <p class="card-text"><strong>Shipping Address: </strong><%= @order.shipping_address %></p>
+        <p class="card-text"><strong>Shipping City: </strong><%= @order.shipping_city %></p>
+        <p class="card-text"><strong>Shipping State: </strong><%= @order.shipping_state %></p>
+        <p class="card-text"><strong>Shipping Zipcode: </strong><%= @order.shipping_zipcode %></p>
+        <p class="card-text"><strong>Payment Method: </strong><%= @order.payment_method %></p>
+        <p class="card-text"><strong>Status:</strong> <%= @order.status %></p>
+
     </div>
     </div>
     <div class="card position-relative">
@@ -21,10 +23,10 @@
             <h5 class="card-title">Order Items</h5>
             <% @order.order_items.each do |item| %>
             <div class="card-text">
-                <%= item.product.product_title %><br>
-                Quantity: <%= item.quantity %><br>
-                Price per item: <%= number_to_currency(item.product.price, unit: "₹") %><br>
-                Total price: <%= number_to_currency(item.total_price, unit: "₹") %><br>
+                <strong>Product Name: </strong><%= item.product.product_title %><br>
+               <strong>Quantity: </strong><%= item.quantity %><br>
+                <strong>Price per item: </strong><%= number_to_currency(item.product.price, unit: "₹") %><br>
+               <strong> Total price: </strong><%= number_to_currency(item.total_price, unit: "₹") %><br>
             </div>
             <% end %>
         </div>

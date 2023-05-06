@@ -27,7 +27,9 @@
             <%= link_to "View your profile", current_user, class: "dropdown-item" %>
               <%= link_to "Edit your profile", edit_user_registration_path, class: "dropdown-item" %>
               <div class="dropdown-divider"></div>
-              <%= link_to 'Order History', order_history_path, class: "dropdown-item" %>
+              <% unless current_user.admin? %>
+                <%= link_to 'Order History', order_history_path, class: "dropdown-item" %>
+              <% end %>
               <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
@@ -45,9 +47,15 @@
         <% end %>
 
         <% if user_signed_in? && current_user.admin? %>
-          <li class="nav-item font-weight-bold ">
-             <%= link_to "USERS", users_path, class:"nav-link text-light " %>
-           </li>
+        <li class="nav-item dropdown">
+              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                USERS
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                <%= link_to "Users", users_path,class:"dropdown-item" %>
+                <%= link_to 'Order History', admin_orders_path, class: "dropdown-item" %>
+            </li>
+         
         <% end %>
       </ul>
         <div class="d-flex">

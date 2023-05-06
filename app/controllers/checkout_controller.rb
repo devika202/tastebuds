@@ -2,28 +2,36 @@ class CheckoutController < ApplicationController
   before_action :set_cart
   include Cartable
   def new
-    @order = Order.new
+    if current_user.cart.cart_items.empty?
+      flash[:notice] = "Your cart is empty. Please add some products to proceed to checkout."
+      redirect_to products_path
+    else
+      @order = Order.new
+    end
   end
   
+  
+
   def create
-    @order = current_user.orders.build(order_params)
-  
-    if @order.save
-      # Create OrderItems for each CartItem
-      current_user.cart.cart_items.each do |cart_item|
-        @order.order_items.create(product: cart_item.product, quantity: cart_item.quantity)
+    if order_params.present?
+      @order = current_user.orders.build(order_params)
+      @order.status = "pending"
+      if @order.save
+        current_user.cart.cart_items.each do |cart_item|
+          @order.order_items.create(product: cart_item.product, quantity: cart_item.quantity)
+        end
+        current_user.cart.clear_cart
+        redirect_to order_confirmation_path(@order)
+      else
+        render :new
       end
-  
-      # Clear the cart after creating the order
-      current_user.cart.clear_cart
-  
-      # Redirect to the order confirmation page
-      redirect_to order_confirmation_path(@order)
     else
-      # Handle errors and show the checkout form again
+      flash.now[:notice] = "Please fill in your shipment details to proceed to checkout."
       render :new
     end
   end
+  
+  
   
   private
 

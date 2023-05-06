@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   get '/orders/:id/confirmation', to: 'orders#order_confirmation', as: 'order_confirmation'
   get 'order_history', to: 'order_history#index'
   resources :carts, only: [:show]
-
+  namespace :admin do
+    resources :orders, only: [:index, :show, :edit, :update]
+  end
+  
+  
 end

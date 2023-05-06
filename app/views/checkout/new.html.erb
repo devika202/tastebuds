@@ -31,8 +31,10 @@
     <p>Your cart is currently empty.</p>
   <% end %>
 <h1 class="text-center mt-4">CHECKOUT</h1><br>
+    
 
   <%= form_with model: @order, url: create_order_path do |f| %>
+    <%= render 'shared/errors', obj: @order %>
     <%= f.label :shipping_name %>
     <%= f.text_field :shipping_name, class: "form-control" %>
 
