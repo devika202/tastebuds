@@ -2,19 +2,30 @@
 <br>
 <div class="container">
   <% if @orders.any? %>
-    <% @orders.each do |order| %>
-      <div class="card position-relative">
-        <div class="card-body">
-          <h5 class="card-title">Order #<%= order.id %></h5>
-          <p class="card-text"><strong>Order Date: </strong><%= order.created_at %></p>
-          <p class="card-text"><strong>Total: </strong><%= number_to_currency(order.price, unit: "₹") %></p>
-          <p class="card-text"><strong>Status:</strong> <%= order.status %></p>
-        </div>
-        <div class="card-footer text-muted">
-          <%= link_to 'View Order', order_path(order), class: "btn btn-primary" %>
-        </div>
-      </div><br>
-    <% end %>
+    <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Order #</th>
+        <th scope="col">Order Date</th>
+        <th scope="col">Total Amount</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td scope="row"><%= order.id %></td>
+          <td scope="row"><%= order.created_at %></td>
+          <td scope="row"><%= number_to_currency(order.price, unit: "₹") %></td>
+          <td scope="row"><%= order.status %></td>
+          <td scope="row">
+            <%= link_to "View", order_path(order), class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table> 
   <% else %>
     <p>No orders found.</p>
   <% end %>

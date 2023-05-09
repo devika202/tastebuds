@@ -1,10 +1,12 @@
-<h1>Edit Order</h1>
-
-<%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
-  <div>
-    <%= f.label :status %>
-    <%= f.select :status, options_for_select(Order.statuses.keys, @order.status) %>
-  </div>
-  
-  <%= f.submit "Update" %>
-<% end %>
+<div class="container"><br>
+  <h1>Edit Order</h1>
+  <br>
+  <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
+    <div>
+      <%= f.label :status %>
+      <%= f.select :status, options_for_select(Order.statuses.keys, @order.status) %>
+    </div>
+    <br>
+    <%= f.submit "Update" %>
+  <% end %>
+</div>

@@ -1,36 +1,40 @@
-<h1>Order Details</h1>
+<div class="container"><br>
+  <h1>Order Details</h1>
+  <div class="card position-relative">
+    <div class="card-body">
+      <p class="card-title"><strong>Order ID:</strong> <%= @order.id %></p>
+      <p class="card-title"><strong>User:</strong> <%= @order.user.email %></p>
+      <p class="card-title"><strong>Shipping Name:</strong> <%= @order.shipping_name %></p>
+      <p class="card-title"><strong>Shipping Address:</strong> <%= @order.shipping_address %></p>
+      <p class="card-title"><strong>Shipping City:</strong> <%= @order.shipping_city %></p>
+      <p class="card-title"><strong>Shipping State:</strong> <%= @order.shipping_state %></p>
+      <p class="card-title"><strong>Shipping Zipcode:</strong> <%= @order.shipping_zipcode %></p>
+      <p class="card-title"><strong>Payment Method:</strong> <%= @order.payment_method %></p>
+    </div>
+  </div>
+  <h2>Order Items</h2>
 
-<p><strong>Order ID:</strong> <%= @order.id %></p>
-<p><strong>User:</strong> <%= @order.user.email %></p>
-<p><strong>Shipping Name:</strong> <%= @order.shipping_name %></p>
-<p><strong>Shipping Address:</strong> <%= @order.shipping_address %></p>
-<p><strong>Shipping City:</strong> <%= @order.shipping_city %></p>
-<p><strong>Shipping State:</strong> <%= @order.shipping_state %></p>
-<p><strong>Shipping Zipcode:</strong> <%= @order.shipping_zipcode %></p>
-<p><strong>Payment Method:</strong> <%= @order.payment_method %></p>
-
-<h2>Order Items</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Product Name</th>
-      <th>Quantity</th>
-      <th>Price</th>
-      <th>Total Price</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order.order_items.each do |order_item| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= order_item.product.product_title %></td>
-        <td><%= order_item.quantity %></td>
-        <td><%= number_to_currency(order_item.product.price, unit: "₹") %></td>
-        <td><%= number_to_currency(order_item.total_price, unit: "₹") %></td>
+        <th scope="col">Product Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total Price</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @order.order_items.each do |order_item| %>
+        <tr>
+          <td scope="row"><%= order_item.product.product_title %></td>
+          <td scope="row"><%= order_item.quantity %></td>
+          <td scope="row"><%= number_to_currency(order_item.product.price, unit: "₹") %></td>
+          <td scope="row"><%= number_to_currency(order_item.total_price, unit: "₹") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price) %></p>
-<p><strong>Status:</strong> <%= @order.status %></p>
+  <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
+  <p><strong>Status:</strong> <%= @order.status %></p>
+</div>

@@ -12,20 +12,29 @@
             <p class="card-text"><strong>Shipping State: </strong><%= @order.shipping_state %></p>
             <p class="card-text"><strong>Shipping Zipcode: </strong><%= @order.shipping_zipcode %></p>
             <p class="card-text"><strong>Payment Method: </strong><%= @order.payment_method %></p>
-            <p class="card-text"><strong>Status:</strong> <%= @order.status %></p>
         </div>
     </div>
-    <div class="card position-relative">
-        <div class="card-body">
-            <h5 class="card-title">Order Items</h5>
+    <h5>Order Items</h5>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Price per item</th>
+            <th scope="col">Total Price</th>
+        </tr>
+        </thead>
+        <tbody>
             <% @order.order_items.each do |item| %>
-            <div class="card-text">
-                <strong>Product Name: </strong><%= item.product.product_title %><br>
-                <strong>Quantity: </strong><%= item.quantity %><br>
-                <strong>Price per item: </strong><%= number_to_currency(item.product.price, unit: "₹") %><br>
-                <strong>Total price: </strong><%= number_to_currency(item.total_price, unit: "₹") %><br>
-            </div>
-            <% end %>
-        </div>
-    </div>
+            <tr>
+            <td scope="row"><%= item.product.product_title %></td>
+            <td scope="row"><%= item.quantity %></td>
+            <td scope="row"><%= number_to_currency(item.product.price, unit: "₹") %></td>
+            <td scope="row"><%= number_to_currency(item.total_price, unit: "₹") %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+      <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
+        <p><strong>Status:</strong> <%= @order.status %></p>
 </div>

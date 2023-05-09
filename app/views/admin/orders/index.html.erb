@@ -1,27 +1,29 @@
-<h1>All Orders</h1>
+<div class="container"><br>
+  <h1>All Orders</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>User</th>
-      <th>Total Amount</th>
-      <th>Status</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= order.id %></td>
-        <td><%= order.user.email %></td>
-        <td><%= number_to_currency(order.total_price, unit: "₹") %></td>
-        <td><%= order.status %></td>
-        <td>
-          <%= link_to "View", admin_order_path(order) %>
-          <%= link_to "Edit", edit_admin_order_path(order) %>
-        </td>
+        <th scope="col">ID</th>
+        <th scope="col">User</th>
+        <th scope="col">Total Amount</th>
+        <th scope="col">Status</th>
+        <th scope="col">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr>
+          <td scope="row"><%= order.id %></td>
+          <td scope="row"><%= order.user.email %></td>
+          <td scope="row"><%= number_to_currency(order.total_price, unit: "₹") %></td>
+          <td scope="row"><%= order.status %></td>
+          <td scope="row">
+            <%= link_to "View", admin_order_path(order) %>
+            <%= link_to "Edit", edit_admin_order_path(order) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

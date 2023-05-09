@@ -1,28 +1,28 @@
 <div class="container">
   <h2>Cart Summary</h2>
   <% if @cart %>
-    <table class="table table-bordered">
+    <table class="table table-striped">
       <thead>
         <tr>
-          <th>Product Name</th>
-          <th>Quantity</th>
-          <th>Price</th>
-          <th>Subtotal</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Price</th>
+          <th scope="col">Subtotal</th>
         </tr>
       </thead>
       <tbody>
         <% @cart.cart_items.each do |cart_item| %>
           <tr>
-            <td><%= cart_item.product.product_title %></td>
-            <td><%= cart_item.quantity %></td>
-            <td><%= cart_item.product.price %></td>
-            <td><%= cart_item.total_price %></td>
+            <td scope="row"><%= cart_item.product.product_title %></td>
+            <td scope="row"><%= cart_item.quantity %></td>
+            <td scope="row"><%= cart_item.product.price %></td>
+            <td scope="row"><%= cart_item.total_price %></td>
           </tr>
         <% end %>
         <tfoot>
           <tr>
             <td colspan="3">Total:</td>
-            <td><%= @cart.total_price %></td>
+            <td><%= number_to_currency(@cart.total_price, unit: "₹") %></td>
           </tr>
         </tfoot>
       </tbody>
