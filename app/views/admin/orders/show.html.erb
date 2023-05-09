@@ -13,7 +13,6 @@
     </div>
   </div>
   <h2>Order Items</h2>
-
   <table class="table table-striped">
     <thead>
       <tr>
@@ -34,7 +33,8 @@
       <% end %>
     </tbody>
   </table>
-
   <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
   <p><strong>Status:</strong> <%= @order.status %></p>
+  <%= link_to 'Order History', admin_orders_path,  class: "btn btn-primary"  %>
+  <%= link_to "Edit Order Status", edit_admin_order_path(@order), class: "btn btn-primary" %>
 </div>

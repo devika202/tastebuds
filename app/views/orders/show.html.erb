@@ -35,6 +35,7 @@
         <% end %>
         </tbody>
     </table>
-      <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
-        <p><strong>Status:</strong> <%= @order.status %></p>
+    <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
+    <p><strong>Status:</strong> <%= @order.status %></p>
+
 </div>

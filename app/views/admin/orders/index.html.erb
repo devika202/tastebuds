@@ -19,8 +19,8 @@
           <td scope="row"><%= number_to_currency(order.total_price, unit: "₹") %></td>
           <td scope="row"><%= order.status %></td>
           <td scope="row">
-            <%= link_to "View", admin_order_path(order) %>
-            <%= link_to "Edit", edit_admin_order_path(order) %>
+            <%= link_to "View", admin_order_path(order), class: "btn btn-primary " %>
+            <%= link_to "Edit Order Status", edit_admin_order_path(order), class: "btn btn-primary " %>
           </td>
         </tr>
       <% end %>
