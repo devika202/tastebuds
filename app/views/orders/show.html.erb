@@ -24,7 +24,7 @@
             <th scope="col">Total Price</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody class="table-group-divider">
             <% @order.order_items.each do |item| %>
             <tr>
             <td scope="row"><%= item.product.product_title %></td>

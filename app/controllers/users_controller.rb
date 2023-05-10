@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   
   def show
+    @user = User.find(params[:id])
     @search = Product.ransack(params[:q])
     if current_user && (current_user == @user || current_user.admin?)
       # allow access
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
     
 
   def index
+    @users = User.all
     @search = Product.ransack(params[:q])
     if current_user && current_user.admin?
       @users = User.paginate(page: params[:page], per_page: 3)
@@ -46,8 +48,8 @@ class UsersController < ApplicationController
     if @user.save
       user_signed_in?
       flash[:notice] = "Welcome, #{user_params[:firstname]}! You have successfully created your account."
-      session[:user_id] = @user.id # Set the session to the user's ID
-      redirect_to root_path # Redirect to the logged-in view
+      session[:user_id] = @user.id
+      redirect_to root_path 
     else
       p @user.errors.full_messages
       render :new, status: :unprocessable_entity

@@ -88,8 +88,17 @@
                 <% end %>
               </form>
             <% end %>
-
             <ul class="navbar-nav mb-2 mb-lg-0">
+              <% if user_signed_in? && current_user.admin? %>&nbsp; &nbsp; &nbsp; &nbsp;
+                <li class="nav-item dropdown">
+                  <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                    Shops
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                    <%= link_to 'New Shop', new_shop_path, class: "dropdown-item" %>
+                  </div>
+                </li>
+              <% end %>
               <% if user_signed_in? %>
                 <li class="nav-item font-weight-bold ">
                   <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %>

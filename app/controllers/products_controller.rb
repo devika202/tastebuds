@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
   def update
     if params[:product][:image].present?
       @product.image.attach(params[:product][:image])
-      @product.image.purge_later # delete the old image
+      @product.image.purge_later 
     end
   
     if @product.update(product_params)

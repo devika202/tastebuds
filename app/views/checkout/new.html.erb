@@ -10,7 +10,7 @@
           <th scope="col">Subtotal</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
         <% @cart.cart_items.each do |cart_item| %>
           <tr>
             <td scope="row"><%= cart_item.product.product_title %></td>

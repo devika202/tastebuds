@@ -23,5 +23,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :orders, only: [:index, :show, :edit, :update]
   end
-  
+  namespace :admin do
+    resources :shops, only: [:new, :create]
+  end  
+  get 'admin/new_shop', to: 'admin#new_shop', as: :new_shop
+  post 'admin/create_shop', to: 'admin#create_shop', as: :create_shop
+  get 'admin/new_sales_report', to: 'admin#new_sales_report', as: :new_sales_report
+  post 'admin/create_sales_report', to: 'admin#create_sales_report', as: :create_sales_report
 end
