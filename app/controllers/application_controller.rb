@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
     helper_method :current_user ,:user_signed_in?
     protect_from_forgery with: :exception
     before_action :authenticate_admin!, if: :admin_controller?
+    helper_method :current_shop
 
     def admin_controller?
       params[:controller].split('/').first == 'admin'
@@ -18,9 +19,13 @@ class ApplicationController < ActionController::Base
         redirect_to login_path
         end
     end
+
+    private
+
+    def current_shop
+        @current_shop ||= Shop.find_by(id: session[:shop_id]) if session[:shop_id]
+    end
    
-      
-  
     protected
 
     def current_admin

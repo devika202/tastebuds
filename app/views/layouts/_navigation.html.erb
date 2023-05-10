@@ -6,6 +6,7 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ">
+      <% unless current_shop %>
         <% if user_signed_in? && current_user.admin? %>
           <li class="nav-item dropdown">
             <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenu" aria-expanded="false" data-turbo="false">
@@ -59,6 +60,7 @@
             </li>
          
         <% end %>
+      <% end %>
       </ul>
         <div class="d-flex">
           <% if user_signed_in? %>
@@ -103,6 +105,9 @@
                 <li class="nav-item font-weight-bold ">
                   <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %>
                 </li>
+              <% end %>
+              <% if current_shop %>
+                <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>
               <% end %>
             </ul>
           </div>

@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :shops, only: [:new, :create]
   end  
+  get '/shops/login', to: 'shops#login'
+  post '/shops/login', to: 'shops#login'
+  delete '/shops/logout', to: 'shops#logout'
+  get '/shops/dashboard', to: 'shops#dashboard', as: :shop_dashboard
+
   get 'admin/new_shop', to: 'admin#new_shop', as: :new_shop
   post 'admin/create_shop', to: 'admin#create_shop', as: :create_shop
   get 'admin/new_sales_report', to: 'admin#new_sales_report', as: :new_sales_report
