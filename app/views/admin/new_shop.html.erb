@@ -1,47 +1,52 @@
 <h1 class="text-center mt-4">New Shop</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: @shop, url: create_shop_path, local: true) do |form| %>
+        <% if @shop.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
 
-<%= form_with(model: @shop, url: create_shop_path, local: true) do |form| %>
-  <% if @shop.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shop.errors.count, "error") %> prohibited this shop from being saved:</h2>
+            <ul>
+            <% @shop.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-      <ul>
-      <% @shop.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="form-group row form-label">
+          <%= form.label :name,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= form.text_field :name,class: "form-control shadow rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= form.label :email,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= form.email_field :email,class: "form-control shadow rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= form.label :password,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+          <%= form.password_field :password,class: "form-control shadow rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= form.label :password_confirmation,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= form.password_field :password_confirmation,class: "form-control shadow rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row justify-content-center form-label">
+          <%= form.submit "Register Shop",class: "btn btn-dark btn-lg width" %>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group row form-label">
-    <%= form.label :name,class: "col-2 col-form-label text-dark" %>
-    <div class="col-10">
-      <%= form.text_field :name,class: "form-control shadow rounded" %>
-    </div>
+      </div>
   </div>
-
-  <div class="form-group row form-label">
-    <%= form.label :email,class: "col-2 col-form-label text-dark" %>
-    <div class="col-10">
-      <%= form.email_field :email,class: "form-control shadow rounded" %>
-    </div>
-  </div>
-
-  <div class="form-group row form-label">
-    <%= form.label :password,class: "col-2 col-form-label text-dark" %>
-    <div class="col-10">
-     <%= form.password_field :password,class: "form-control shadow rounded" %>
-    </div>
-  </div>
-
-  <div class="form-group row form-label">
-    <%= form.label :password_confirmation,class: "col-2 col-form-label text-dark" %>
-    <div class="col-10">
-      <%= form.password_field :password_confirmation,class: "form-control shadow rounded" %>
-    </div>
-  </div>
-
-  <div class="form-group row justify-content-center form-label">
-    <%= form.submit "Register Shop",class: "btn btn-dark btn-lg width" %>
-  </div>
-<% end %>
+</div>

@@ -32,5 +32,5 @@ Rails.application.routes.draw do
   get '/shops/dashboard', to: 'shops#dashboard', as: :shop_dashboard
   get 'admin/new_shop', to: 'admin#new_shop', as: :new_shop
   post 'admin/create_shop', to: 'admin#create_shop', as: :create_shop
-  resources :shop_sales_reports, only: [:index, :new, :create]
+  resources :shop_sales_reports, only: [:index, :new, :create, :edit, :update, :destroy]
 end

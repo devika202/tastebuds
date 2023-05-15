@@ -1,6 +1,7 @@
 <h1 class="text-center mt-4">Sales Reports for <%= current_shop.name %></h1>
 <br>
 <div class="container">
+ <% if @sales_reports.any? %>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -14,17 +15,23 @@
         </thead>
         <tbody class="table-group-divider">
             <% @sales_reports.each do |sales_report| %>
-            <tr>
-                <td scope="row"><%= sales_report.product_name %></td>
-                <td scope="row"><%= sales_report.price %></td>
-                <td scope="row"><%= sales_report.quantity %></td>
-                <td scope="row"><%= sales_report.total_price %></td>
-                <td scope="row"><%= sales_report.date_of_purchase %></td>
-                <td scope="row"><%= sales_report.category.name %></td>
-            </tr>
+                <tr>
+                    <td><%= sales_report.product_name %></td>
+                    <td><%= sales_report.price %></td>
+                    <td><%= sales_report.quantity %></td>
+                    <td><%= sales_report.total_price %></td>
+                    <td><%= sales_report.date_of_purchase %></td>
+                    <td><%= sales_report.category.name %></td>
+                    <td><%= link_to "Edit", edit_shop_sales_report_path(sales_report), class: "btn btn-primary" %></td>
+                    <td><%= link_to "Delete", shop_sales_report_path(sales_report), method: :delete, data: { confirm: "Are you sure you want to delete this sales report?" }, class: "btn btn-danger" %></td>
+                </tr>
             <% end %>
         </tbody>
+
     </table>
+    <% else %>
+    <p>No sales reports found.</p>
+    <% end %>
     <br>
     <div class="text-center">
         <%= link_to "Add Sales Report", new_shop_sales_report_path, class: "btn btn-primary" %>
