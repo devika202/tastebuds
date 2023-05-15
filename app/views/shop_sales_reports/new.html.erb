@@ -1,0 +1,53 @@
+<h1 class="text-center mt-4">Add Sales Report</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_with(model: [@sales_report], url: shop_sales_reports_path, local: true) do |f| %>
+        <div class="form-group row form-label">
+          <%= f.label :product_name,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.text_field :product_name,class: "form-control shadow rounded", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :price,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.number_field :price,class: "form-control shadow rounded", step: "0.01", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :quantity,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.number_field :quantity,class: "form-control shadow rounded", required: true %>
+        </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :total_price,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.number_field :total_price,class: "form-control shadow rounded", step: "0.01", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :date_of_purchase,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.date_field :date_of_purchase,class: "form-control shadow rounded", required: true %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :category_id,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.collection_select(:category_id, @categories, :id, :name, {}, { class: "form-control shadow rounded", required: true }) %>
+          </div>
+        </div>
+        <div class="form-group row justify-content-center form-label">
+          <%= f.submit "Save", class: "btn btn-dark btn-lg width" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

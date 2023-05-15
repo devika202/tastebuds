@@ -1,0 +1,32 @@
+<h1 class="text-center mt-4">Sales Reports for <%= current_shop.name %></h1>
+<br>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col">Date of Purchase</th>
+            <th scope="col">Category</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <% @sales_reports.each do |sales_report| %>
+            <tr>
+                <td scope="row"><%= sales_report.product_name %></td>
+                <td scope="row"><%= sales_report.price %></td>
+                <td scope="row"><%= sales_report.quantity %></td>
+                <td scope="row"><%= sales_report.total_price %></td>
+                <td scope="row"><%= sales_report.date_of_purchase %></td>
+                <td scope="row"><%= sales_report.category.name %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <br>
+    <div class="text-center">
+        <%= link_to "Add Sales Report", new_shop_sales_report_path, class: "btn btn-primary" %>
+    </div>
+</div>

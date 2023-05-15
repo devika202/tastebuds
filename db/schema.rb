@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_10_052133) do
+ActiveRecord::Schema.define(version: 2023_05_15_050419) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -119,21 +119,21 @@ ActiveRecord::Schema.define(version: 2023_05_10_052133) do
   end
 
   create_table "sales_reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.bigint "shop_id"
-    t.date "date"
-    t.time "time"
-    t.float "amount"
-    t.bigint "product_id"
-    t.bigint "category_id"
-    t.index ["category_id"], name: "index_sales_reports_on_category_id"
-    t.index ["product_id"], name: "index_sales_reports_on_product_id"
-    t.index ["shop_id"], name: "index_sales_reports_on_shop_id"
+    t.string "product_name"
+    t.decimal "price", precision: 10
+    t.integer "quantity"
+    t.decimal "total_price", precision: 10
+    t.integer "category_id"
+    t.date "purchase_date"
+    t.integer "shop_id"
+    t.date "date_of_purchase"
   end
 
   create_table "shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "location"
     t.string "contact_info"
+    t.string "password_digest"
     t.string "email"
     t.string "password"
     t.string "password_confirmation"
@@ -182,7 +182,4 @@ ActiveRecord::Schema.define(version: 2023_05_10_052133) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
-  add_foreign_key "sales_reports", "categories"
-  add_foreign_key "sales_reports", "products"
-  add_foreign_key "sales_reports", "shops"
 end

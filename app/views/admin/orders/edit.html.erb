@@ -1,12 +1,21 @@
-<div class="container"><br>
-  <h1>Edit Order</h1>
+<h1 class="text-center mt-4">Edit Order</h1>
   <br>
-  <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
-    <div>
-      <%= f.label :status %>
-      <%= f.select :status, options_for_select(Order.statuses.keys, @order.status) %>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-2">
+        <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
+          <div class="form-group row form-label">
+          <%= f.label :Status,class: "col-2 col-form-label text-dark" %>
+            <div class="col-12">
+              <%= f.select :status, options_for_select(Order.statuses.keys, @order.status) %>
+            </div>
+          </div>
+          <br>
+          <div class="form-group row justify-content-center form-label">
+            <%= f.submit "Update",class: "btn btn-dark btn-lg width" %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <br>
-    <%= f.submit "Update" %>
-  <% end %>
+  </div>
 </div>

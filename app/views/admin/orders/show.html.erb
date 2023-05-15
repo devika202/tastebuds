@@ -1,5 +1,5 @@
 <div class="container"><br>
-  <h1>Order Details</h1>
+  <h1 class="text-center mt-4">Order Details</h1>
   <div class="card position-relative">
     <div class="card-body">
       <p class="card-title"><strong>Order ID:</strong> <%= @order.id %></p>
@@ -35,6 +35,6 @@
   </table>
   <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
   <p><strong>Status:</strong> <%= @order.status %></p>
-  <%= link_to 'Order History', admin_orders_path,  class: "btn btn-primary"  %>
+  <%= link_to 'All Orders', admin_orders_path,  class: "btn btn-primary"  %>
   <%= link_to "Edit Order Status", edit_admin_order_path(@order), class: "btn btn-primary" %>
 </div>

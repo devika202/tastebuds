@@ -14,8 +14,8 @@ class ShopsController < ApplicationController
           redirect_to shop_dashboard_path
           flash[:notice] = "Logged in successfully!"
         else
-          flash[:error] = 'Invalid email or password'
           render 'login'
+          flash[:error] = 'Invalid email or password'
         end
       end
       

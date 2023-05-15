@@ -1,1 +1,6 @@
-<h1 class="text-center mt-4" >Welcome to your shop dashboard <br> <%= current_shop.name %>!</h1>
+<br><br><br><br>
+<h1 class="text-center mt-4">Welcome to your shop dashboard <br> <%= current_shop.name %>!</h1><br><br><br>
+<div class="text-center">
+  <%= link_to "Add Sales Report", new_shop_sales_report_path, class: "btn btn-primary" %>
+  <%= link_to "View Sales Reports", shop_sales_reports_path, class: "btn btn-primary" %>
+</div>
