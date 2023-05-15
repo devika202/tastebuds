@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_15_050419) do
+ActiveRecord::Schema.define(version: 2023_05_15_072221) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -133,13 +133,13 @@ ActiveRecord::Schema.define(version: 2023_05_15_050419) do
     t.string "name"
     t.string "location"
     t.string "contact_info"
-    t.string "password_digest"
     t.string "email"
     t.string "password"
     t.string "password_confirmation"
     t.string "encrypted_password"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string "password_digest"
   end
 
   create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
