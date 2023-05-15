@@ -111,7 +111,7 @@
                 <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>
               <% end %>&nbsp; &nbsp; &nbsp; &nbsp;
 
-              <% if user_signed_in? && !current_user.admin? && !current_shop %>
+              <% if !current_user || (user_signed_in? && !current_user.admin? && !current_shop) %>
                 <%= link_to "Shops", shops_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
               <% end %>
 
