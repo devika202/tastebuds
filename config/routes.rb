@@ -20,12 +20,7 @@ Rails.application.routes.draw do
   get '/orders/:id/confirmation', to: 'orders#order_confirmation', as: 'order_confirmation'
   get 'order_history', to: 'order_history#index'
   resources :carts, only: [:show]
-  namespace :admin do
-    resources :orders, only: [:index, :show, :edit, :update]
-  end
-  namespace :admin do
-    resources :shops, only: [:new, :create]
-  end  
+  
   get '/shops/login', to: 'shops#login'
   post '/shops/login', to: 'shops#login'
   delete '/shops/logout', to: 'shops#logout'
@@ -33,4 +28,14 @@ Rails.application.routes.draw do
   get 'admin/new_shop', to: 'admin#new_shop', as: :new_shop
   post 'admin/create_shop', to: 'admin#create_shop', as: :create_shop
   resources :shop_sales_reports, only: [:index, :new, :create, :edit, :update, :destroy]
+  get 'admin/sales_reports', to: 'shop_sales_reports#admin_index'
+  resources :shops
+  namespace :admin do
+    resources :orders, only: [:index, :show, :edit, :update]
+    resources :shops, only: [:new, :create, :edit, :update, :index ,:destroy]
+    get '/sales_reports', to: 'shop_sales_reports#admin_index'
+  end
+  
+  
+
 end

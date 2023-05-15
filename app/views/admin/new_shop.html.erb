@@ -1,4 +1,4 @@
-<h1 class="text-center mt-4">New Shop</h1>
+<h1 class="text-center mt-4">New Shop</h1><br>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-10">
@@ -26,6 +26,20 @@
           <%= form.label :email,class: "col-2 col-form-label text-dark" %>
           <div class="col-10">
             <%= form.email_field :email,class: "form-control shadow rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= form.label :location,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= form.text_field :location,class: "form-control shadow rounded" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= form.label :contact_info,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= form.text_field :contact_info,class: "form-control shadow rounded" %>
           </div>
         </div>
 

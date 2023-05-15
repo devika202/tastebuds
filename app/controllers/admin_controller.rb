@@ -24,6 +24,6 @@ class AdminController < ApplicationController
     private
   
     def shop_params
-      params.require(:shop).permit(:name, :email, :password, :password_confirmation)
+      params.require(:shop).permit(:name, :email, :contact_info, :location, :password, :password_confirmation)
     end
   end

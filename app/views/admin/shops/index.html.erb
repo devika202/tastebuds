@@ -1,0 +1,28 @@
+<h2 class="text-center mt-4">SHOPS LIST</h2><br>
+<div class="container">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Location</th>
+        <th scope="col">Contact Info</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      <% @shops.each do |shop| %>
+        <tr>
+          <td scope="row"><%= shop.name %></td>
+          <td scope="row"><%= shop.email %></td>
+          <td scope="row"><%= shop.location %></td>
+          <td scope="row"><%= shop.contact_info %></td>
+          <td scope="row">
+            <%= link_to 'Edit', edit_admin_shop_path(shop), class: "btn btn-primary" %>
+            <%= link_to 'Delete', admin_shop_path(shop), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

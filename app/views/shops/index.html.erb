@@ -1,0 +1,21 @@
+<h1 class="text-center mt-4">All Shops</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <% @shops.each do |shop| %>
+        <div class="card mb-3">
+          <div class="card-header"><b><%= shop.name %></b>
+            <% if current_user.admin? %>
+              <%= link_to "Edit Profile", edit_admin_shop_path(shop), class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+          <div class="card-body">
+            <p><strong>Email:</strong> <%= shop.email %></p>
+            <p><strong>Location:</strong> <%= shop.location %></p>
+            <p><strong>Contact Info:</strong> <%= shop.contact_info %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

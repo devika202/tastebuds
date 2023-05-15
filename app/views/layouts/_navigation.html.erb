@@ -94,23 +94,27 @@
               <% if user_signed_in? && current_user.admin? %>&nbsp; &nbsp; &nbsp; &nbsp;
                 <li class="nav-item dropdown">
                   <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
-                    Shops
+                    SHOPS
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
                     <%= link_to 'New Shop', new_shop_path, class: "dropdown-item" %>
-                      <%= link_to "View Sales Reports", shop_sales_reports_path, class: "dropdown-item" %>
-
+                    <%= link_to 'Shops', admin_shops_path, class: "dropdown-item" %>
+                    <%= link_to "View Sales Reports", admin_sales_reports_path, class: "dropdown-item" %>
                   </div>
                 </li>
               <% end %>
+              
               <% if user_signed_in? %>
-                <li class="nav-item font-weight-bold ">
-                  <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %>
-                </li>
+                <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %></li>
               <% end %>
               <% if current_shop %>
                 <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>
+              <% end %>&nbsp; &nbsp; &nbsp; &nbsp;
+
+              <% if user_signed_in? && !current_user.admin? && !current_shop %>
+                <%= link_to "Shops", shops_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
               <% end %>
+
             </ul>
           </div>
         </div>

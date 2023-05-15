@@ -1,12 +1,15 @@
 class ShopsController < ApplicationController
-    before_action :require_login, except: [:login]
+    before_action :require_login, except: [:login, :index]
     include Rails.application.routes.url_helpers
 
     def dashboard
         @shop = current_shop
     end
       
-  
+    def index
+      @shops = Shop.all
+    end
+    
     def login
         shop = Shop.find_by(email: params[:email])
         if shop&.authenticate(params[:password])
@@ -17,7 +20,7 @@ class ShopsController < ApplicationController
           render 'login'
           flash[:error] = 'Invalid email or password'
         end
-      end
+    end
       
     
     def logout

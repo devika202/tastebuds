@@ -1,5 +1,6 @@
 class ShopSalesReportsController < ApplicationController
   before_action :authorize_current_shop, only: [:index]
+  before_action :authorize_admin, only: [:admin_index]
 
   def index
     @sales_reports = current_shop.sales_reports
@@ -17,7 +18,7 @@ class ShopSalesReportsController < ApplicationController
       redirect_to shop_dashboard_path
     else
       @categories = Category.all
-      puts @sales_report.errors.full_messages # Print error messages to console
+      puts @sales_report.errors.full_messages 
       render :new
     end
   end
@@ -34,7 +35,7 @@ class ShopSalesReportsController < ApplicationController
       redirect_to shop_sales_reports_path
     else
       @categories = Category.all
-      puts @sales_report.errors.full_messages # Print error messages to console
+      puts @sales_report.errors.full_messages 
       render :edit
     end
   end
@@ -46,10 +47,22 @@ class ShopSalesReportsController < ApplicationController
     redirect_to shop_sales_reports_path
   end
 
+  def admin_index
+    @sales_reports = SalesReport.all
+  end
+  
+
   private
 
   def sales_report_params
     params.require(:sales_report).permit(:product_name, :price, :quantity, :total_price, :date_of_purchase, :category_id)
+  end
+
+  def authorize_admin
+    unless current_user && current_user.admin?
+      flash[:alert] = "You are not authorized to view this page."
+      redirect_to root_path
+    end
   end
 
   def authorize_current_shop
