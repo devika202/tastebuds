@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   resources :orders, only: [:index, :show, :create]
   resources :carts, only: [:show, :create, :update, :destroy]
   post '/search', to: 'products#search', as: 'products_search'
+  post '/search', to: 'shop_sales_reports#search', as: 'shop_sales_reports_search'
+
   get '/orders/:id/confirmation', to: 'orders#order_confirmation', as: 'order_confirmation'
   get 'order_history', to: 'order_history#index'
   resources :carts, only: [:show]

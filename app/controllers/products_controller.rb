@@ -14,9 +14,6 @@ class ProductsController < ApplicationController
     end
   end
   
-  
-  
-
   def index
     @products = Product.all
     @search = Product.includes(:categories).ransack(params[:q])

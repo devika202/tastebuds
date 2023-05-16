@@ -85,11 +85,13 @@
             <% if current_page?(products_path) %>
               <form class="d-flex me-3">
                 <%= search_form_for @search do |f| %>
-                  <%= f.text_field :product_title_cont, class: 'form-control me-2 text-dark', placeholder: 'search by product title' %>&nbsp;
+                  <%= f.text_field :product_title_or_description_cont, class: 'form-control me-2 text-dark', placeholder: 'search by product title or description' %>&nbsp;
                   <button class="btn btn-outline-light" type="submit">Search</button>
                 <% end %>
               </form>
             <% end %>
+
+
             <ul class="navbar-nav mb-2 mb-lg-0">
               <% if user_signed_in? && current_user.admin? %>&nbsp; &nbsp; &nbsp; &nbsp;
                 <li class="nav-item dropdown">

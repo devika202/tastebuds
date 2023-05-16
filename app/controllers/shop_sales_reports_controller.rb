@@ -48,8 +48,20 @@ class ShopSalesReportsController < ApplicationController
   end
 
   def admin_index
-    @sales_reports = SalesReport.all
+    @search = SalesReport.ransack(params[:q])
+    @sales_reports = @search.result(distinct: true).includes(:shop, :category).order(date_of_purchase: :desc)
+  
+    if params[:q] && params[:q][:shop_name_or_category_name_cont].present?
+      name_or_category = "%#{params[:q][:shop_name_or_category_name_cont]}%"
+      @sales_reports = @sales_reports.where(
+        'sales_reports.product_name LIKE ? OR shops.name LIKE ? OR categories.name LIKE ?',
+        name_or_category, name_or_category, name_or_category
+      )
+    end
+    
   end
+  
+  
   
 
   private
