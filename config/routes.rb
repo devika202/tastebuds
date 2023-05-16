@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   get '/orders/:id/confirmation', to: 'orders#order_confirmation', as: 'order_confirmation'
   get 'order_history', to: 'order_history#index'
   resources :carts, only: [:show]
-  
   get '/shops/login', to: 'shops#login'
   post '/shops/login', to: 'shops#login'
   delete '/shops/logout', to: 'shops#logout'
@@ -35,7 +34,9 @@ Rails.application.routes.draw do
     resources :shops, only: [:new, :create, :edit, :update, :index ,:destroy]
     get '/sales_reports', to: 'shop_sales_reports#admin_index'
   end
-  
+  resources :products do
+    resources :reviews
+  end
   
 
 end

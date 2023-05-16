@@ -41,8 +41,64 @@
           <%= link_to 'Login to Add to Cart', new_user_session_path, class: "btn btn-primary" %>
         </div>
         <% end %>
-        <%= link_to 'Back', products_path, class: "btn btn-success" %>
       </div>
     </div>
   </div>
 
+<div class="ui fluid raised card chatbox">
+  <div class="container">
+    <h1 class="text-center mt-4">
+                <i class="circular orange coffee icon"></i>
+                REVIEWS
+            </h1>
+              <div class="content" id="messages">
+                  <div class="ui feed" id="message-container">
+                  <% @product.reviews.each do |review| %>
+                      <div class="event">
+                          <div class="content">
+                              <div class="summary">
+                                <span class="user">
+                                <% if review.user %>
+                                    <b><%= review.user.email %> >> reviewed <%= time_ago_in_words(review.created_at) %> ago:</b>
+                                    <h6><%= simple_format(review.content) %></h6>
+                                <% else %>
+                                    <b>Anonymous >> reviewed <%= time_ago_in_words(review.created_at) %> ago:</b>
+                                    <h6><%= simple_format(review.content) %></h6>
+                                <% end %>
+                                <% if user_signed_in? && current_user.admin? %>
+                                    <%= button_to "Delete", product_review_path(@product, review), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }, class: "btn btn-outline-danger" %>
+                                <% end %>
+                                </span>
+                                <br>
+                            </div>
+                          </div>
+                      </div>
+                  <% end %>
+                  <br>
+
+                  <%= form_with(model: [ @product, @review ], html: {class: "ui reply form", role: "form"}, url: product_reviews_path(@product), remote: true) do |form| %>
+                  <div class="field">
+                    <div class="ui fluid icon input">
+                      <div class="field review-form" style="display: flex; align-items: center;">
+                        <div class="ui fluid icon input " style="flex: 1;">
+                          <%= form.text_area :content, class: 'tinymce', rows: 4, style: "width: 80%;" ,placeholder: "Enter your review!!!" %>
+                          <% if user_signed_in? %>
+                            <%= form.hidden_field :user_id, value: current_user.id %>
+                          <% end %>
+                          <%= form.hidden_field :product_id %>
+                          <%= form.button :submit, class: "btn btn-primary", style: "margin-top: -80px;" %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <% end %>
+
+              </div>
+            </div>
+          </div><br>
+          <%= link_to 'Cancel and return to products listing',products_path, class: "btn btn-success"  %>
+          </div>
+      </div>
+  </div>
+</div>    

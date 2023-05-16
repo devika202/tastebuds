@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.includes(:categories).find(params[:id])
     @search = Product.ransack(params[:q])
-  
+    @review = Review.new(product: @product)
     if user_signed_in?
       @cart = current_user.cart || Cart.new(user: current_user)
     else

@@ -14,6 +14,7 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require my_validation_script
 require("popper.js/dist/umd/popper.min")
 import 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle';
@@ -43,3 +44,10 @@ document.addEventListener("DOMContentLoaded", function() {
   
 
   $('.dropdown-toggle').dropdown();
+
+
+  tinymce.init({
+    selector: 'textarea',
+    plugins: 'link image code',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+  });
