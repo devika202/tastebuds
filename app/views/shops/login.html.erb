@@ -9,8 +9,9 @@
     <div class="form-group">
       <%= label_tag(:password, 'Password') %>
       <%= password_field_tag(:password, '', class: 'form-control') %>
+    </div><br>
+    <div class="form-group row justify-content-center form-label">
+      <%= submit_tag('Login', class: 'btn btn-dark btn-lg width') %>
     </div>
-
-    <%= submit_tag('Login', class: 'btn btn-primary') %>
   <% end %>
 </div>

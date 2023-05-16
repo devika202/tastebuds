@@ -67,7 +67,7 @@ class ShopSalesReportsController < ApplicationController
   private
 
   def sales_report_params
-    params.require(:sales_report).permit(:product_name, :price, :quantity, :total_price, :date_of_purchase, :category_id)
+    params.require(:sales_report).permit(:product_name, :weight, :price, :quantity, :total_price, :date_of_purchase, :category_id)
   end
 
   def authorize_admin
