@@ -14,7 +14,7 @@ class ShopsController < ApplicationController
         shop = Shop.find_by(email: params[:email])
         if shop&.authenticate(params[:password])
           session[:shop_id] = shop.id
-          redirect_to shop_dashboard_path
+          redirect_to root_path
           flash[:notice] = "Logged in successfully!"
         else
           render 'login'

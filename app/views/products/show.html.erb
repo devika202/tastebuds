@@ -8,8 +8,10 @@
       <p><strong>DESCRIPTION:</strong> <%= @product.description %></p>
       <p><strong>WEIGHT:</strong> <%= @product.weight %></p>
       <p><strong>SKU ID:</strong> <%= @product.sku_id %></p>
-      <% if current_user.admin? %>
+      <% if user_signed_in? %>
+        <% if current_user.admin? %>
         <p><strong>Quantity:</strong> <%= @product.quantity %></p>
+        <% end %>
       <% end %>
       <p><strong>CATEGORY:</strong>
         <% @product.categories.each do |category| %>
