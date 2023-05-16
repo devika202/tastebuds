@@ -6,6 +6,9 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ">
+      <% if current_shop %>&nbsp; &nbsp; &nbsp;
+          <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light" %>
+      <% end %>
       <% unless current_shop %>
         <% if user_signed_in? && current_user.admin? %>
           <li class="nav-item dropdown">
@@ -25,6 +28,7 @@
             <%= link_to "SHOPS", shops_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
         <% end %>
 
+        
 
         <% if user_signed_in? %>
           <li class="nav-item">
@@ -116,7 +120,7 @@
                 <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %></li>
               <% end %>
               <% if current_shop %>
-                <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>
+                <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>&nbsp; &nbsp; &nbsp;
               <% end %>
 
             </ul>
