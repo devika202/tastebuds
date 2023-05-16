@@ -9,17 +9,27 @@ class CheckoutController < ApplicationController
       @order = Order.new
     end
   end
-  
-  
 
   def create
     if order_params.present?
       @order = current_user.orders.build(order_params)
       @order.status = "pending"
+  
       if @order.save
         current_user.cart.cart_items.each do |cart_item|
-          @order.order_items.create(product: cart_item.product, quantity: cart_item.quantity)
+          product = cart_item.product
+          quantity_purchased = cart_item.quantity
+          remaining_quantity = product.quantity - quantity_purchased
+  
+          if remaining_quantity >= 0
+            product.update(quantity: remaining_quantity)
+            @order.order_items.create(product: product, quantity: quantity_purchased)
+          else
+            flash[:notice] = "Insufficient quantity for product: #{product.product_title}. Available quantity: #{product.quantity}"
+            redirect_to products_path and return
+          end          
         end
+  
         current_user.cart.clear_cart
         redirect_to order_confirmation_path(@order)
       else
@@ -29,9 +39,7 @@ class CheckoutController < ApplicationController
       flash.now[:notice] = "Please fill in your shipment details to proceed to checkout."
       render :new
     end
-  end
-  
-  
+  end  
   
   private
 

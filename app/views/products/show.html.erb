@@ -8,6 +8,9 @@
       <p><strong>DESCRIPTION:</strong> <%= @product.description %></p>
       <p><strong>WEIGHT:</strong> <%= @product.weight %></p>
       <p><strong>SKU ID:</strong> <%= @product.sku_id %></p>
+      <% if current_user.admin? %>
+        <p><strong>Quantity:</strong> <%= @product.quantity %></p>
+      <% end %>
       <p><strong>CATEGORY:</strong>
         <% @product.categories.each do |category| %>
           <%= category.name %>
@@ -52,7 +55,7 @@
 <div class="ui fluid raised card chatbox">
   <div class="container">
     <h1 class="text-center mt-4">
-                <i class="circular orange coffee icon"></i>
+          <i class="circular orange coffee icon"></i>
                 REVIEWS
             </h1>
               <div class="content" id="messages">
