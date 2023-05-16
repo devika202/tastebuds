@@ -7,12 +7,21 @@ class ProductsController < ApplicationController
     @product = Product.includes(:categories).find(params[:id])
     @search = Product.ransack(params[:q])
     @review = Review.new(product: @product)
+  
     if user_signed_in?
       @cart = current_user.cart || Cart.new(user: current_user)
     else
       @cart = Cart.new
     end
+  
+    if @product.quantity.to_i <= 0
+      @availability_message = "Product Unavailable"
+    else
+      @availability_message = "Product Available"
+    end
+    
   end
+  
   
   def index
     @products = Product.all
@@ -78,7 +87,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:product_title,:quantity ,:description, :sku_id, :price, :image,  category_ids: [])
+    params.require(:product).permit(:product_title,:weight,:quantity ,:description, :sku_id, :price, :image,  category_ids: [])
   end
 
   def require_admin

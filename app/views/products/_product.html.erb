@@ -11,7 +11,6 @@
                 <% end %>
                 <div class="card-body">
                   <h5 class="card-title text-center"><%= link_to product.product_title, product_path(product), class: "text-success" %></h5>
-                  <p class="card-text text-center"><strong>Quantity:</strong> <%= product.quantity %></p>
                   <p class="card-text text-center"><strong>Category:</strong>
                     <% product.categories.each do |category| %>
                       <%= category.name %>
@@ -20,7 +19,13 @@
                       <% end %>
                     <% end %>
                   </p>
+                  <p class="card-text text-center"><strong>Quantity:</strong> <%= product.weight %></p>
                   <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product.id), class: "text-success" %> /-</h5>
+                  <% if product.quantity.to_i <= 0 %>        
+                  <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+                  <% else %>
+                    <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
+                  <% end %>
                     <div class="text-center">
                       <%= link_to "View", product_path(product.id), class: "btn btn-primary " %>
                     </div>
