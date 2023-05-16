@@ -46,6 +46,9 @@
   #home-container {
     margin-top: 75px;
 }
+  #about-container {
+    margin-top: 75px;
+  }
 .bg-dark {
     background-color: #000000!important;
 }
@@ -84,6 +87,17 @@
     margin-top: -76px;
     margin-bottom: -9px;
     border-radius: 2.3rem;
+  }
+
+  .jumbotrons {
+    background-image: asset-url('image2.jpg');
+    background-size: cover;
+    height: 1271px;
+    width: 1928px;
+    margin-left: -320px;
+    margin-top: -530px;
+    margin-bottom: -9px;
+    border-radius: 0.3rem;
   }
 
   

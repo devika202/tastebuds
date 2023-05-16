@@ -6,9 +6,13 @@
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0 ">
+
       <% if current_shop %>&nbsp; &nbsp; &nbsp;
           <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light" %>
       <% end %>
+
+      <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
+
       <% unless current_shop %>
         <% if user_signed_in? && current_user.admin? %>
           <li class="nav-item dropdown">
@@ -21,7 +25,7 @@
               </div>                     
           </li>
         <% else %>
-          &nbsp; &nbsp;<%= link_to "PRODUCTS",products_path, class:"btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
+          &nbsp; <%= link_to "PRODUCTS",products_path, class:"btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
         <% end %> 
 
         <% if !current_user || (user_signed_in? && !current_user.admin? && !current_shop) %>
