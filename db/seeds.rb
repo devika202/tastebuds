@@ -8,13 +8,24 @@
 admin = User.create(
     firstname:'Devika',
     lastname:'S',
-    username: 'admin',
+    username: 'admin@2',
     password: 'administrator',
     password_confirmation:'administrator',
-    address:'Kollam,kerala,India',
-    phone:'9633',
-    email:'devikaskrishnan1118@gmail.com',
+    address:'Kerala,India',
+    phone:'9633826969',
+    email:'devikaskrishnan2000@gmail.com',
     admin: true
   )
-  
+admin = User.create(
+  firstname:'Taste Buds',
+  lastname:'Admin',
+  username: 'admin@1',
+  password: 'administrator',
+  password_confirmation:'administrator',
+  address:'Kerala,India',
+  phone:'9633826969',
+  email:'tastebudsadmin@gmail.com',
+  admin: true
+)
+
   puts "Admin user created: #{admin.username} / #{admin.password}"

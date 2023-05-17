@@ -40,6 +40,8 @@ Rails.application.routes.draw do
   resources :products do
     resources :reviews
   end
-  
+  namespace :admin do
+    get 'sales_review/index'
+  end
 
 end
