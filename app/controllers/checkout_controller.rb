@@ -9,6 +9,8 @@ class CheckoutController < ApplicationController
       @order = Order.new
     end
   end
+  
+  
 
   def create
     if order_params.present?
@@ -40,6 +42,8 @@ class CheckoutController < ApplicationController
       render :new
     end
   end  
+  
+  
   
   private
 

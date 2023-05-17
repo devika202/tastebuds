@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :products, only: [:index]
   get '/checkout', to: 'checkout#new'
   post '/checkout', to: 'checkout#create', as: 'create_order'
-  resources :orders, only: [:index, :show, :create]
+  resources :orders, only: [:show, :create]
   resources :carts, only: [:show, :create, :update, :destroy]
   post '/search', to: 'products#search', as: 'products_search'
   post '/search', to: 'shop_sales_reports#search', as: 'shop_sales_reports_search'

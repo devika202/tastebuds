@@ -1,9 +1,0 @@
-<div class="container"><br>
-  <h1 class="text-center mt-4">Orders</h1>
-
-  <ul>
-    <% @orders.each do |order| %>
-      <li><%= link_to order.id, order_path(order) %></li>
-    <% end %>
-  </ul>
-</div>
