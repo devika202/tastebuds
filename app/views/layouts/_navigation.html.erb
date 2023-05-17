@@ -106,10 +106,17 @@
               </form>
             <% end %>
 
-
             <ul class="navbar-nav mb-2 mb-lg-0">
               <% if user_signed_in? && current_user.admin? %>
-                <%= link_to 'ACCOUNTING', admin_sales_review_index_path, class: "btn btn-outline-light" %>&nbsp; &nbsp; 
+                <li class="nav-item dropdown">
+                  <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                    ACCOUNTING
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                    <%= link_to 'Add Accounting', new_admin_accounting_path, class: "dropdown-item" %>
+                    <%= link_to 'Accounting Report', admin_accounting_index_path, class: "dropdown-item" %>
+                  </div>
+                </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
                     SHOPS

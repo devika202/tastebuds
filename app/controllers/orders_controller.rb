@@ -15,6 +15,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
   
+  
   private
   
   def correct_user

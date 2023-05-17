@@ -41,7 +41,9 @@ Rails.application.routes.draw do
     resources :reviews
   end
   namespace :admin do
-    get 'sales_review/index'
+    resources :accounting, only: [:index, :new, :create, :edit, :update]
   end
+  
+  
 
 end

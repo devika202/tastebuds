@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_17_063129) do
+ActiveRecord::Schema.define(version: 2023_05_17_102738) do
 
   create_table "accountings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "order_id"
     t.bigint "sales_report_id"
     t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.decimal "amount", precision: 10
+    t.string "source"
     t.index ["order_id"], name: "index_accountings_on_order_id"
     t.index ["sales_report_id"], name: "index_accountings_on_sales_report_id"
   end

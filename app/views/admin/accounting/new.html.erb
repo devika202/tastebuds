@@ -1,0 +1,36 @@
+<!-- Render a form to create a new accounting record -->
+<h1>New Accounting Record</h1>
+
+<%= form_for([:admin, @accounting_record], url: admin_accounting_index_path) do |f| %>
+
+<% if @accounting_record.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@accounting_record.errors.count, "error") %> prohibited this accounting record from being saved:</h2>
+    <ul>
+      <% @accounting_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+  <!-- Display form fields -->
+  <%= f.label :source %>
+  <% used_order_ids = Accounting.pluck(:order_id) %>
+  <% used_sales_report_ids = Accounting.pluck(:sales_report_id) %>
+  <%= f.select :source, options_for_select([['Select Source', nil], ['Shop Sale', 'Shop Sale'], ['Online Sale', 'Online Sale']].reject { |option| used_order_ids.include?(option[1].to_i) || used_sales_report_ids.include?(option[1].to_i) }) %>
+<br><br>
+
+  <%= f.label :online_sale_id %>
+  <%= f.select :order_id, options_for_select([['Select Order', nil]] + @orders.reject { |order| used_order_ids.include?(order.id) }.map { |order| [order.id, order.id] }) %>
+<br><br>
+  <%= f.label :shop_sale_id %>
+  <%= f.select :sales_report_id, options_for_select([['Select Sales Report', nil]] + @sales_reports.reject { |report| used_sales_report_ids.include?(report.id) }.map { |report| [report.id, report.id] }) %>
+<br><br>
+  <%= f.label :amount %>
+  <%= f.text_field :amount %>
+<br><br>
+  <!-- Add more form fields as needed -->
+
+  <%= f.submit "Create Accounting Record" %>
+<% end %>

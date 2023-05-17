@@ -4,6 +4,11 @@ class Order < ApplicationRecord
   has_one :accounting
   has_many :products, through: :order_items, source: :product
   enum status: { pending: 0, processing: 1, shipped: 2, delivered: 3 }
+  after_create :create_accounting
+
+  def create_accounting
+    Accounting.create(order: self, sales_report: self.sales_report)
+  end
   def create_order_items(cart_items)
     cart_items.each do |cart_item|
       order_item = order_items.build(product: cart_item.product_title, quantity: cart_item.quantity, price: cart_item.product.price)

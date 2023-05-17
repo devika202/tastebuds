@@ -51,3 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
     plugins: 'link image code',
     toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
   });
+
+
+
