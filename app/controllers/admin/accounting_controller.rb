@@ -1,6 +1,8 @@
 class Admin::AccountingController < ApplicationController
   def index
     @accounting_records = Accounting.includes(:order, :sales_report).all
+    @orders = Order.all
+    @sales_reports = SalesReport.all
   end
 
   def new

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="text-center mt-4">Accounting Records</h1>
+  <h1 class="text-center mt-4">Accounting Records</h1><br>
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
@@ -11,20 +11,33 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
+      <% total_amount = 0 %>
       <% @accounting_records.each do |accounting_record| %>
-      <tr>
-        <td><%= accounting_record.source %></td>
-        <td><%= accounting_record.order&.id.presence || 'N/A' %></td>
-        <td><%= accounting_record.sales_report&.id.presence || 'N/A' %></td>
-        <td><%= accounting_record.amount %></td>
-        <td><%= accounting_record.created_at.strftime("%Y-%m-%d") %></td>
-      </tr>
+        <tr>
+          <td><%= accounting_record.source %></td>
+          <td><%= accounting_record.order&.id.presence || 'N/A' %></td>
+          <td><%= accounting_record.sales_report&.id.presence || 'N/A' %></td>
+          <td>
+            <% if accounting_record.sales_report_id.present? %>
+              <% sales_report = SalesReport.find_by(id: accounting_record.sales_report_id) %>
+              <% amount = sales_report&.total_price || 0 %>
+            <% elsif accounting_record.order_id.present? %>
+              <% order = Order.find_by(id: accounting_record.order_id) %>
+              <% amount = order&.total_price || 0 %>
+            <% else %>
+              <% amount = 0 %>
+            <% end %>
+            <%= amount %>
+            <% total_amount += amount %>
+          </td>
+          <td><%= accounting_record.created_at.strftime("%Y-%m-%d") %></td>
+        </tr>
       <% end %>
     </tbody>
   </table>
-
+  <br>
   <div class="text-center">
-    <h4>Total Sales Amount: <%= @accounting_records.sum(:amount) %></h4>
+    <h4>Total Sales Amount: <%= total_amount %></h4>
     <h4>Sales Count: <%= @accounting_records.count %></h4>
   </div>
 </div>
