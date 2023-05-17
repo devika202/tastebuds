@@ -22,28 +22,37 @@
         <% end %>
       </p>
       <p><strong>PRICE:</strong> <%= @product.price %>/-</p>
-      <% if @product.quantity.to_i <= 0 %>        
-      <p class="text-danger"><strong>AVAILABILITY:</strong> Product Unavailable</p>
-      <% else %>
-        <p class="text-success"><strong>AVAILABILITY:</strong> Product Available</p>
-      <% end %>
+      
+      
+
       <% if @product.image.attached? %>
         <%= image_tag @product.image, class: "card-img-top size img-fluid mx-auto d-block" %>
       <% else %>
         <%= image_tag "default-image.jpg", class: "card-img-top img-fluid mx-auto d-block" %>
       <% end %>
+      
+      
       <br>
       <% if user_signed_in? %>
         <% if current_user.admin? %>
-          <%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" %>
-          <%= link_to 'Delete', product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          <div class="text-center">
+            <%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary" %>
+            <%= link_to 'Delete', product_path(@product), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </div>
         <% else %>
-          <%= form_for @cart do |f| %>
-            <%= f.hidden_field :product_id, value: @product.id %>
-            <div class="text-center">
-              <%= f.submit 'Add to Cart', class: 'btn btn-primary mx-auto' %>
-            </div>
-          <% end %>
+          <% if @product.quantity.to_i <= 0 %>        
+            <p class="text-danger text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+            <% else %>
+              <p class="text-success text-center"><strong>AVAILABILITY:</strong> Product Available</p>
+            <% if user_signed_in? %>
+              <%= form_for @cart do |f| %>
+                  <%= f.hidden_field :product_id, value: @product.id %>
+                  <div class="text-center">
+                    <%= f.submit 'Add to Cart', class: 'btn btn-primary mx-auto' %>
+                  </div>
+              <% end %>
+            <% end %>
+          <% end %>      
         <% end %>
       <% else %>
         <div class="text-center">
@@ -52,7 +61,7 @@
       <% end %>
     </div>
   </div>
-</div>
+</div><br><br><br><br>
 
 <div class="ui fluid raised card chatbox">
   <div class="container">
@@ -106,7 +115,7 @@
               </div>
             </div>
           </div><br>
-          <%= link_to 'Cancel and return to products listing',products_path, class: "btn btn-success"  %>
+          <%= link_to 'Cancel and return to products listing',products_path, class: "btn btn-success" %>
           </div>
       </div>
   </div>

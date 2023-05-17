@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_16_094241) do
+ActiveRecord::Schema.define(version: 2023_05_16_181109) do
+
+  create_table "accountings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "sales_report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_accountings_on_order_id"
+    t.index ["sales_report_id"], name: "index_accountings_on_sales_report_id"
+  end
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.string "name", null: false
@@ -139,6 +148,8 @@ ActiveRecord::Schema.define(version: 2023_05_16_094241) do
     t.integer "shop_id"
     t.date "date_of_purchase"
     t.string "weight"
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_sales_reports_on_order_id"
   end
 
   create_table "shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -184,11 +195,8 @@ ActiveRecord::Schema.define(version: 2023_05_16_094241) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "cart_items", "carts"
-  add_foreign_key "cart_items", "products"
-  add_foreign_key "carts", "statuses"
-  add_foreign_key "carts", "users"
+  add_foreign_key "accountings", "orders"
+  add_foreign_key "accountings", "sales_reports"
   add_foreign_key "categories_products", "categories"
   add_foreign_key "categories_products", "products"
   add_foreign_key "order_items", "orders"
@@ -196,4 +204,5 @@ ActiveRecord::Schema.define(version: 2023_05_16_094241) do
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
+  add_foreign_key "sales_reports", "orders"
 end
