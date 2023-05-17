@@ -30,6 +30,8 @@ class Admin::AccountingController < ApplicationController
 
   def edit
     @accounting_record = Accounting.find(params[:id])
+    @orders = Order.all
+    @sales_reports = SalesReport.all
   end
 
   def update
@@ -41,6 +43,13 @@ class Admin::AccountingController < ApplicationController
       render :edit
     end
   end
+
+  def destroy
+    @accounting_record = Accounting.find(params[:id])
+    @accounting_record.destroy
+    redirect_to admin_accounting_index_path, notice: 'Accounting record was successfully destroyed.'
+  end
+  
 
   private
 
