@@ -3,7 +3,18 @@ class Admin::AccountingController < ApplicationController
     @accounting_records = Accounting.includes(:order, :sales_report).all
     @orders = Order.all
     @sales_reports = SalesReport.all
+  
+    if params[:from_date].present?
+      from_date = Date.parse(params[:from_date]).beginning_of_day
+      @accounting_records = @accounting_records.where("created_at >= ?", from_date)
+    end
+  
+    if params[:to_date].present?
+      to_date = Date.parse(params[:to_date]).end_of_day
+      @accounting_records = @accounting_records.where("created_at <= ?", to_date)
+    end
   end
+  
 
   def new
     @accounting_record = Accounting.new

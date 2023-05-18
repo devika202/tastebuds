@@ -41,7 +41,11 @@ Rails.application.routes.draw do
     resources :reviews
   end
   namespace :admin do
-    resources :accounting, only: [:index, :new, :create, :edit, :update ,:destroy]
+    resources :accounting, only: [:index, :new, :create, :edit, :update ,:destroy] do
+      collection do
+        get 'search' 
+      end
+    end
   end
   
   
