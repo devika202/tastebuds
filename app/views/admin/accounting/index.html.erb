@@ -29,33 +29,41 @@
       </tr>
     </thead>
     <tbody class="table-group-divider">
-      <% total_amount = 0 %>
-      <% @accounting_records.each do |accounting_record| %>
-        <tr>
-          <td scope="row"><%= accounting_record.source %></td>
-          <td scope="row"><%= accounting_record.order&.id.presence || 'N/A' %></td>
-          <td scope="row"><%= accounting_record.sales_report&.id.presence || 'N/A' %></td>
-          <td scope="row">
-            <% if accounting_record.sales_report_id.present? %>
-              <% sales_report = SalesReport.find_by(id: accounting_record.sales_report_id) %>
-              <% amount = sales_report&.total_price || 0 %>
-            <% elsif accounting_record.order_id.present? %>
-              <% order = Order.find_by(id: accounting_record.order_id) %>
-              <% amount = order&.total_price || 0 %>
-            <% else %>
-              <% amount = 0 %>
-            <% end %>
-            <%= amount %>
-            <% total_amount += amount %>
-          </td>
-          <td scope="row"><%= accounting_record.created_at.strftime("%d-%m-%y") %></td>
-          <td scope="row">
-            <%= link_to 'Edit', edit_admin_accounting_path(accounting_record), class: "btn btn-primary " %>
-            <%= link_to 'Destroy', admin_accounting_path(accounting_record), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary " %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
+  <% total_amount = 0 %>
+  <% @accounting_records.each do |accounting_record| %>
+    <tr>
+      <td scope="row">
+        <% if accounting_record.order_id.present? %>
+          Online Sales
+        <% elsif accounting_record.sales_report_id.present? %>
+          Shop Sales
+        <% else %>
+          N/A
+        <% end %>
+      </td>
+      <td scope="row"><%= accounting_record.order&.id.presence || 'N/A' %></td>
+      <td scope="row"><%= accounting_record.sales_report&.id.presence || 'N/A' %></td>
+      <td scope="row">
+        <% if accounting_record.sales_report_id.present? %>
+          <% sales_report = SalesReport.find_by(id: accounting_record.sales_report_id) %>
+          <% amount = sales_report&.total_price || 0 %>
+        <% elsif accounting_record.order_id.present? %>
+          <% order = Order.find_by(id: accounting_record.order_id) %>
+          <% amount = order&.total_price || 0 %>
+        <% else %>
+          <% amount = 0 %>
+        <% end %>
+        <%= amount %>
+        <% total_amount += amount %>
+      </td>
+      <td scope="row"><%= accounting_record.created_at.strftime("%d-%m-%y") %></td>
+      <td scope="row">
+        <%= link_to 'Destroy', admin_accounting_path(accounting_record), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary " %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+
   </table>
   <br>
   <div class="text-center">
