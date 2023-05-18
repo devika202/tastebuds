@@ -1,32 +1,47 @@
-<h1>New Accounting Record</h1>
+<h1 class="text-center mt-4">New Accounting Record</h1><br>
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <div class="col-10">
+      <%= form_for([:admin, @accounting_record], url: admin_accounting_index_path) do |f| %>
 
-<%= form_for([:admin, @accounting_record], url: admin_accounting_index_path) do |f| %>
+        <% if @accounting_record.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@accounting_record.errors.count, "error") %> prohibited this accounting record from being saved:</h2>
+            <ul>
+              <% @accounting_record.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        <div class="form-group row form-label">
+          <%= f.label :source, class: "col-2 col-form-label text-dark text-right" %>
+          <% used_order_ids = Accounting.pluck(:order_id) %>
+          <% used_sales_report_ids = Accounting.pluck(:sales_report_id) %>
+          <div class="col-10">
+            <%= f.select :source, options_for_select([['Select Source', nil], ['Shop Sale', 'Shop Sale'], ['Online Sale', 'Online Sale']].reject { |option| used_order_ids.include?(option[1].to_i) || used_sales_report_ids.include?(option[1].to_i) }), class: "form-control shadow rounded" %>
+          </div>
+        </div><br>
 
-<% if @accounting_record.errors.any? %>
-  <div id="error_explanation">
-    <h2><%= pluralize(@accounting_record.errors.count, "error") %> prohibited this accounting record from being saved:</h2>
-    <ul>
-      <% @accounting_record.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <div class="form-group row form-label">
+          <%= f.label :online_sale, "Order ID", class: "col-2 col-form-label text-dark text-right" %>
+          <div class="col-10">
+            <%= f.select :order_id, options_for_select([['Select Order', nil]] + @orders.reject { |order| used_order_ids.include?(order.id) }.map { |order| [order.id, order.id] }), class: "form-control shadow rounded" %>
+          </div>
+        </div><br>
+
+        <div class="form-group row form-label">
+          <%= f.label :shop_sale, "Sales Report ID", class: "col-2 col-form-label text-dark text-right" %>
+          <div class="col-10">
+            <%= f.select :sales_report_id, options_for_select([['Select Sales Report', nil]] + @sales_reports.reject { |report| used_sales_report_ids.include?(report.id) }.map { |report| [report.id, report.id] }), class: "form-control shadow rounded" %>
+          </div>
+        </div> <br>
+
+        <div class="form-group row justify-content-center form-label">
+          <%= f.submit "Create Accounting Record", class: "btn btn-dark btn-lg width" %>
+        </div>
+        
       <% end %>
-    </ul>
+    </div>
   </div>
-<% end %>
-
-<%= f.label :source %>
-<% used_order_ids = Accounting.pluck(:order_id) %>
-<% used_sales_report_ids = Accounting.pluck(:sales_report_id) %>
-<%= f.select :source, options_for_select([['Select Source', nil], ['Shop Sale', 'Shop Sale'], ['Online Sale', 'Online Sale']].reject { |option| used_order_ids.include?(option[1].to_i) || used_sales_report_ids.include?(option[1].to_i) }) %>
-<br><br>
-
-<%= f.label :order_id, "Order ID" %>
-<%= f.select :order_id, options_for_select([['Select Order', nil]] + @orders.reject { |order| used_order_ids.include?(order.id) }.map { |order| [order.id, order.id] }) %>
-<br><br>
-
-<%= f.label :sales_report_id, "Sales Report ID" %>
-<%= f.select :sales_report_id, options_for_select([['Select Sales Report', nil]] + @sales_reports.reject { |report| used_sales_report_ids.include?(report.id) }.map { |report| [report.id, report.id] }) %>
-
-<br><br>
-
-<%= f.submit "Create Accounting Record" %>
-<% end %>
+</div>

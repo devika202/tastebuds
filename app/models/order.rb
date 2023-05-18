@@ -1,10 +1,11 @@
 class Order < ApplicationRecord
   belongs_to :user
   has_many :order_items, dependent: :destroy
-  has_one :accounting
+  has_one :accounting, dependent: :destroy
   has_many :products, through: :order_items, source: :product
   enum status: { pending: 0, processing: 1, shipped: 2, delivered: 3 }
   after_create :create_accounting
+  belongs_to :sales_report, optional: true
 
   def create_accounting
     Accounting.create(order: self, sales_report: self.sales_report)
