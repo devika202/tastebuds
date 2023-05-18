@@ -20,7 +20,7 @@ class CategoriesController < ApplicationController
         @category = Category.find(params[:id])
         @search = Product.ransack(params[:q])
         if user_signed_in? && current_user.admin?
-          @products = @category.products.paginate(page: params[:page], per_page: 3)
+          @products = @category.products.paginate(page: params[:page], per_page: 6)
         else
           flash[:alert] = "Only admins can perform this action."
           redirect_to root_path

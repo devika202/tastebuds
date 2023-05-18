@@ -15,42 +15,42 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8 showallign style="width: 18rem;">
-    <%= render 'shared/errors', obj: @product %>
-      <% @products.each_slice(1) do |products_slice| %>
-        <div class="card-deck" >
+      <% @products.each_slice(3) do |products_slice| %>
+        <div class="row new1">
           <% products_slice.each do |product| %>
-            <div class="card box-shadow">
-              <% if product.image.attached? %>
-                <%= image_tag product.image, class: "card-img-top size img-fluid mx-auto d-block" %>
-              <% else %>
-                <%= image_tag "default-image.jpg", class: "card-img-top img-fluid mx-auto d-block" %>
-              <% end %>
-              <div class="card-body">
-                <h5 class="card-title text-center"><%= link_to product.product_title, product_path(product), class: "text-success" %></h5>
-                <h5 class="card-text text-center">Description: <%= truncate(product.description, length: 100) %></h5>
-                <p class="card-text text-center"><strong>SKU ID:</strong> <%= product.sku_id %></p>
-                <p class="card-text text-center"><strong>CATEGORY:</strong>
-                  <% product.categories.each do |category| %>
-                    <%= category.name %>
-                    <% unless category == product.categories.last %>
-                      ,
-                    <% end %>
-                  <% end %>
-                </p>
-                <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product), class: "text-success" %> /-</h5>
-                <% if user_signed_in? %>
-                  <div class="text-center">
-                    <%= link_to "View", product_path(product), class: "btn btn-primary " %>
-                  </div>
+            <div class="col-md-4">
+              <div class="card mb-3 box-shadow"><br>
+                <%= render 'shared/errors', obj: @product %>
+                <% if product.image.attached? %>
+                  <%= image_tag product.image, class: "card-img-top size img-fluid mx-auto d-block" %>
                 <% else %>
-                  <div class="text-center">
-                    <%= link_to "Login to view", root_path, class: "btn btn-primary" %>
-                  </div>
+                  <%= image_tag "default-image.jpg", class: "card-img-top img-fluid mx-auto d-block" %>
                 <% end %>
+                <div class="card-body">
+                  <h5 class="card-title text-center"><%= link_to product.product_title, product_path(product), class: "text-success" %></h5>
+                  <p class="card-text text-center"><strong>Category:</strong>
+                    <% product.categories.each do |category| %>
+                      <%= category.name %>
+                      <% unless category == product.categories.last %>
+                        ,
+                      <% end %>
+                    <% end %>
+                  </p>
+                  <p class="card-text text-center"><strong>Weight:</strong> <%= product.weight %></p>
+                  <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product.id), class: "text-success" %> /-</h5>
+                  <% if product.quantity.to_i <= 0 %>        
+                  <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+                  <% else %>
+                    <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
+                  <% end %>
+                    <div class="text-center">
+                      <%= link_to "View", product_path(product.id), class: "btn btn-primary " %>
+                    </div>           
+                </div>
               </div>
             </div>
           <% end %>
-        </div><br><br>
+        </div>
       <% end %>
     </div>
   </div>
