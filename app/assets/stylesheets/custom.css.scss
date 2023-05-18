@@ -91,18 +91,37 @@
   .text2{
     margin-top: -76px;
   }
-
   .jumbotrons {
-    background-image: asset-url('image2.jpg');
-    background-size: contain;
+    position: relative;
     height: 820px;
     width: 1928px;
     margin-left: -320px;
-    margin-top: -75px;
+    margin-top: -77px;
     margin-bottom: -9px;
     border-radius: 0.3rem;
-  }
+    overflow: hidden;
+}
 
+.jumbotrons::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('image2.jpg');
+    background-size: contain;
+    filter: blur(3px); 
+    z-index: -1;
+}
+
+#about-container {
+    position: relative;
+    z-index: 1;
+}
+
+
+  
   
   .jumbotron h1 {
     color: black;
@@ -130,7 +149,7 @@ body {
   background-color: rgb(255, 255, 255);
 }
 
-/* Other Classes for Page Styling */
+
 
 body {
   background: #ffffff;
@@ -138,7 +157,6 @@ body {
 }
 
 
-/*pagination styling*/
 .flickr_pagination {
   text-align: center;
   padding: 0.3em;

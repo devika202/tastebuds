@@ -44,6 +44,7 @@ class Admin::AccountingController < ApplicationController
     @orders = Order.all
     @sales_reports = SalesReport.all
   end
+  
 
   def update
     @accounting_record = Accounting.find(params[:id])

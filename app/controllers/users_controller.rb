@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @search = Product.ransack(params[:q])
     if current_user && (current_user == @user || current_user.admin?)
-      # allow access
     else
       flash[:alert] = "Access denied. You can only view your own profile or as an admin."
       redirect_to root_path
@@ -34,7 +33,6 @@ class UsersController < ApplicationController
   def edit
     @search = Product.ransack(params[:q])
     if current_user && (current_user == @user || current_user.admin?)
-      # allow access
     else
       flash[:alert] = "Access denied. You can only view your own profile or as an admin."
       redirect_to root_path

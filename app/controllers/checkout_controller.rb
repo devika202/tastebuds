@@ -38,7 +38,7 @@ class CheckoutController < ApplicationController
           current_user.cart.clear_cart
           redirect_to order_confirmation_path(@order)
         else
-          @order.destroy # Remove the unsaved order from the database
+          @order.destroy 
           flash[:notice] = product_errors.join("<br>")
           redirect_to products_path
         end
