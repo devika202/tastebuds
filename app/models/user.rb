@@ -16,7 +16,7 @@ class User < ApplicationRecord
                     :registerable, :recoverable, :rememberable, :validatable
   validates :firstname, 
                   presence: true, 
-                  length: {minimum: 3, maximum:100}
+                  length: {minimum: 3, maximum:10}
   validates :phone,  
                   :presence => {:message => 'Enter a valid number!'},
                   :numericality => true,
@@ -26,9 +26,9 @@ class User < ApplicationRecord
                   length: {minimum: 10, maximum:200}
   validates :lastname, 
                   presence: true, 
-                  length: {minimum: 1, maximum:100}
+                  length: {minimum: 1, maximum:10}
   validates :username, 
                   presence: true, 
-                  length: {minimum: 3, maximum:100}
+                  length: {minimum: 3, maximum:10}
  
 end

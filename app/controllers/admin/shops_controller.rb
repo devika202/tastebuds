@@ -50,6 +50,6 @@ class Admin::ShopsController < ApplicationController
   end
 
   def shop_params
-    params.require(:shop).permit(:name, :email, :location, :contact_info)
+    params.require(:shop).permit(:name, :email, :location, :contact_info, :password, :password_confirmation)
   end
 end

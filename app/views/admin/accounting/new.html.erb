@@ -32,7 +32,7 @@
 
         <div class="form-group row form-label justify-content-center align-items-center">
           <%= f.label :shop_sale, "SalesReport_ID", class: "col-5 col-form-label text-dark text-center" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <div class="col-5">
+            <div class="col-5">  
             <%= f.select :sales_report_id, options_for_select([['Select Sales Report', nil]] + @sales_reports.reject { |report| used_sales_report_ids.include?(report.id) }.map { |report| [report.id, report.id] }), class: "form-control shadow rounded" %>
           </div>
         </div> <br>

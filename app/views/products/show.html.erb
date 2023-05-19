@@ -93,7 +93,7 @@
                         </div>
                     <% end %>
                     <br>
-
+                  <% unless user_signed_in? && current_user.admin? %>
                     <%= form_with(model: [ @product, @review ], html: {class: "ui reply form", role: "form"}, url: product_reviews_path(@product), remote: true) do |form| %>
                     <div class="field">
                       <div class="ui fluid icon input">
@@ -110,6 +110,7 @@
                       </div>
                     </div>
                     <% end %>
+                  <% end %>
                 </div>
               </div>
             </div><br>
