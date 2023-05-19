@@ -27,22 +27,24 @@
           </tbody>
         </table>
       <div class="col-2">
-        <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
-          <div class="form-group row form-label justify-content-center align-items-center">
-            <%= f.label :Status, class: "col-3 col-form-label text-dark text-center" %>
-            <div class="col-8">
-              <%= f.select :status, options_for_select(Order.statuses.keys, @order.status), {} %>
+        <% if @order.status == "delivered" %>
+          <p><b>Order status: </b><%= @order.status %></p>
+          <%= link_to 'All Orders', admin_orders_path,  class: "btn btn-primary"  %>
+        <% else %>
+          <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
+            <div class="form-group row form-label justify-content-center align-items-center">
+              <%= f.label :Status, class: "col-3 col-form-label text-dark text-center" %>
+              <div class="col-8">
+                <%= f.select :status, options_for_select(Order.statuses.keys, @order.status), {} %>
+              </div>
             </div>
-          </div>
-          <br>
-          <div class="form-group row justify-content-center form-label">
-            <%= f.submit "Update",class: "btn btn-dark btn-lg width" %>
-          </div>
+            <br>
+            <div class="form-group row justify-content-center form-label">
+              <%= f.submit "Update",class: "btn btn-dark btn-lg width" %>
+            </div>
+          <% end %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-
-
-

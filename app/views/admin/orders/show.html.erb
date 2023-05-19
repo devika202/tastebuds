@@ -34,7 +34,12 @@
     </tbody>
   </table>
   <p><strong>Total Amount:</strong> <%= number_to_currency(@order.total_price, unit: "₹") %></p>
-  <p><strong>Status:</strong> <%= @order.status %></p>
-  <%= link_to 'All Orders', admin_orders_path,  class: "btn btn-primary"  %>
-  <%= link_to "Edit Order Status", edit_admin_order_path(@order), class: "btn btn-primary" %>
+  <% if @order.status == "delivered" %>
+    <p><b>Order status: </b><%= @order.status %></p>
+    <%= link_to 'All Orders', admin_orders_path,  class: "btn btn-primary"  %>
+  <% else %>
+    <p><strong>Status:</strong> <%= @order.status %></p>
+    <%= link_to 'All Orders', admin_orders_path,  class: "btn btn-primary"  %>
+    <%= link_to "Edit Order Status", edit_admin_order_path(@order), class: "btn btn-primary" %>
+  <% end %>
 </div>

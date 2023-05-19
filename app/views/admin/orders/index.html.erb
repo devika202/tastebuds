@@ -20,11 +20,15 @@
           <td scope="row">
             <%= link_to "View", admin_order_path(order), class: "btn btn-primary " %></td>
           <td scope="row">
-            <%= form_for order, url: admin_order_path(order), method: :patch do |f| %>
-              <div class="form-group row form-label justify-content-center align-items-center">
+            <% if order.status == "delivered" %>
+              <p><b>Order status: </b><%= order.status %></p>
+            <% else %>
+              <%= form_for order, url: admin_order_path(order), method: :patch do |f| %>
+                <div class="form-group row form-label justify-content-center align-items-center">
                   <%= f.select :status, options_for_select(Order.statuses.keys, order.status), {}, class: "btn btn-outline-dark btn-sm", style: "width: 100px;" %>&nbsp;
-                  <%= f.submit "Update",class: "btn btn-primary btn-sm", style: "width: 80px;" %>
-              </div>
+                  <%= f.submit "Update", class: "btn btn-primary btn-sm", style: "width: 80px;" %>
+                </div>
+              <% end %>
             <% end %>
           </td>
         </tr>
