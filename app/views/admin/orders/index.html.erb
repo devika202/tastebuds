@@ -8,6 +8,7 @@
         <th scope="col">Total Amount</th>
         <th scope="col">Status</th>
         <th scope="col">Actions</th>
+        <th scope="col">Change Order Status</th>
       </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -17,8 +18,14 @@
           <td scope="row"><%= number_to_currency(order.total_price, unit: "₹") %></td>
           <td scope="row"><%= order.status %></td>
           <td scope="row">
-            <%= link_to "View", admin_order_path(order), class: "btn btn-primary " %>
-            <%= link_to "Edit Order Status", edit_admin_order_path(order), class: "btn btn-primary " %>
+            <%= link_to "View", admin_order_path(order), class: "btn btn-primary " %></td>
+          <td scope="row">
+            <%= form_for order, url: admin_order_path(order), method: :patch do |f| %>
+              <div class="form-group row form-label justify-content-center align-items-center">
+                  <%= f.select :status, options_for_select(Order.statuses.keys, order.status), {}, class: "btn btn-outline-dark btn-sm", style: "width: 100px;" %>&nbsp;
+                  <%= f.submit "Update",class: "btn btn-primary btn-sm", style: "width: 80px;" %>
+              </div>
+            <% end %>
           </td>
         </tr>
       <% end %>

@@ -77,7 +77,7 @@
                                 <div class="summary">
                                   <span class="user">
                                   <% if review.user %>
-                                      <b><%= review.user.email %> >> reviewed <%= time_ago_in_words(review.created_at) %> ago:</b>
+                                      <b><%= review.user.firstname %> >> reviewed <%= time_ago_in_words(review.created_at) %> ago:</b>
                                       <h6><%= simple_format(review.content) %></h6>
                                   <% else %>
                                       <b>Anonymous >> reviewed <%= time_ago_in_words(review.created_at) %> ago:</b>

@@ -1,3 +1,5 @@
+<h1 class="text-center mt-4">CHECKOUT</h1><br>
+
 <div class="container">
   <h2>Cart Summary</h2>
   <% if @cart %>
@@ -30,24 +32,22 @@
   <% else %>
     <p>Your cart is currently empty.</p>
   <% end %>
-<h1 class="text-center mt-4">CHECKOUT</h1><br>
-    
-
+<h2 class="text-center mt-4">Add Delivery Address</h2>
   <%= form_with model: @order, url: create_order_path do |f| %>
     <%= render 'shared/errors', obj: @order %>
-    <%= f.label :shipping_name %>
+    <%= f.label :Name %>
     <%= f.text_field :shipping_name, class: "form-control" %>
 
-    <%= f.label :shipping_address %>
+    <%= f.label :Address %>
     <%= f.text_field :shipping_address, class: "form-control" %>
 
-    <%= f.label :shipping_city %>
+    <%= f.label :City %>
     <%= f.text_field :shipping_city, class: "form-control" %>
 
-    <%= f.label :shipping_state %>
+    <%= f.label :State %>
     <%= f.text_field :shipping_state, class: "form-control" %>
 
-    <%= f.label :shipping_zipcode %>
+    <%= f.label :Zipcode %>
     <%= f.text_field :shipping_zipcode, class: "form-control" %>
 
     <%= f.label :payment_method %>
