@@ -1,6 +1,4 @@
-
-
-  .navbar-brand#logo {
+.navbar-brand#logo {
     position: absolute;
     left: 50%;
     font-size: 3em;
@@ -50,14 +48,14 @@
   width:auto;
 }
 
-
 .jumbotron {
     background-image: asset-url('download.jpg');
     background-size: cover;
-    height: 738px;
+    height: 812px;
     width: 1948px;
     margin-left: -28px;
-    margin-top: 32px;
+    margin-top: -2px;
+    margin-bottom: -116px!important;
   }
   .text2{
     margin-top: -76px;
@@ -73,17 +71,18 @@
     overflow: hidden;
 }
 
-.jumbotrons::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('image2.jpg');
-    background-size: contain;
-    filter: blur(3px); 
-    z-index: -1;
+.down{
+  margin-top: 171px;
+}
+.jumbotrons{
+  content: "";
+  background-image: asset-url('image2.jpg');
+  background-size: cover;
+  height: 809px;
+  width: 1920px;
+  margin-left: -405px;
+  margin-top: 0px;
+  margin-bottom: -116px !important;
 }
 
 #about-container {

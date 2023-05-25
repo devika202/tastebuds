@@ -1,0 +1,85 @@
+<h1 class="text-center mt-4">Edit User</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= form_for(@user, url: registration_path(@user), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user %>
+        <br><br>
+        <div class="form-group row form-label">
+          <%= f.label :firstname,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.text_field :firstname,class: "form-control shadow rounded", autofocus: true, autocomplete: "firstname" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :lastname,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.text_field :lastname,class: "form-control shadow rounded", autofocus: true, autocomplete: "lastname" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :phone,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.phone_field :phone,class: "form-control shadow rounded", autofocus: true, autocomplete: "phone" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :address,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.text_field :address,class: "form-control shadow rounded", autofocus: true, autocomplete: "address" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :email ,class: "col-2 col-form-label text-dark"%>
+          <div class="col-10">
+            <%= f.email_field :email,class: "form-control shadow rounded", autofocus: true, autocomplete: "email" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :username,class: "col-2 col-form-label text-dark" %>
+          <div class="col-10">
+            <%= f.text_field :username,class: "form-control shadow rounded", autofocus: true, autocomplete: "username" %>
+          </div>
+        </div>
+
+    
+        <div class="form-group row form-label">
+          <%= f.label :password ,class: "col-2 col-form-label text-dark"%> 
+          <div class="col-10">
+            <i>(leave blank if you don't want to change it)</i>
+            <%= f.password_field :password,class: "form-control shadow rounded", autocomplete: "new-password" %>
+            <% if @minimum_password_length %>
+              <em><%= @minimum_password_length %>characters minimum</em>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+          <%= f.label :password_confirmation ,class: "col-2 col-form-label text-dark"%>
+          <div class="col-10">
+            <%= f.password_field :password_confirmation,class: "form-control shadow rounded", autocomplete: "new-password" %>
+          </div>
+        </div>
+
+        <div class="form-group row form-label">
+  <%= f.label :current_password, class: "col-2 col-form-label text-dark" %>
+  <div class="col-10">
+    <i>(we need your current password to confirm your changes)</i>
+    <%= f.password_field :current_password, class: "form-control shadow rounded", autocomplete: "current-password" %>
+  </div>
+</div>
+
+        <div class="form-group row justify-content-center form-label">
+          <%= f.submit "Update", class: "btn btn-dark btn-lg width" %>
+        </div>
+      <% end %>
+
+      <%= link_to "Back", :back %>
+    </div>
+  </div>
+</div>
