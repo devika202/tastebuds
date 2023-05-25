@@ -32,26 +32,36 @@
   <% else %>
     <p>Your cart is currently empty.</p>
   <% end %>
+  
 <h2 class="text-center mt-4">Add Delivery Address</h2>
+  <% if @order.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading">The following errors prevented the order from being saved:</h4>
+      <ul>
+        <% @order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
   <%= form_with model: @order, url: create_order_path do |f| %>
-    <%= render 'shared/errors', obj: @order %>
     <%= f.label :Name %>
-    <%= f.text_field :shipping_name, class: "form-control" %>
+    <%= f.text_field :shipping_name, class: "form-control", required: true %>
 
     <%= f.label :Address %>
-    <%= f.text_field :shipping_address, class: "form-control" %>
+    <%= f.text_field :shipping_address, class: "form-control", required: true %>
 
     <%= f.label :City %>
-    <%= f.text_field :shipping_city, class: "form-control" %>
+    <%= f.text_field :shipping_city, class: "form-control", required: true %>
 
     <%= f.label :State %>
-    <%= f.text_field :shipping_state, class: "form-control" %>
+    <%= f.text_field :shipping_state, class: "form-control", required: true %>
 
     <%= f.label :Zipcode %>
-    <%= f.text_field :shipping_zipcode, class: "form-control" %>
+    <%= f.text_field :shipping_zipcode, class: "form-control", required: true %>
 
     <%= f.label :payment_method %>
-    <%= f.select :payment_method, ["Credit Card", "PayPal", "Cash on Delivery"], {}, class: "form-control" %>
+    <%= f.select :payment_method, ["Credit Card", "PayPal", "Cash on Delivery"], {}, class: "form-control", required: true %>
 
     <%= f.submit "Place Order", class: "btn btn-success mt-3" %>
   <% end %>

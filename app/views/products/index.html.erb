@@ -1,11 +1,10 @@
-
-<div class="container">
+<div class="container" style="max-width: 1700px;">
   <h1 class="text-center mt-4">PRODUCTS</h1><br>
   <div class="flickr_pagination">
     <%= will_paginate @products, :container => false %>
   </div>
   <div class="row new">
-    <div class="col-md-3">
+    <div class="col-md-3 ">
       <br><br>
       <div class="form-group">
         <%= search_form_for @search, url: products_path, method: :get, html: { class: 'form-group' } do |f| %>            
@@ -23,10 +22,12 @@
         <% end %>
       </div>
     </div>
+    <div class="container" style="max-width: 1250px;">
     <div class="col-md-9">
       <%= render 'product'%>
     </div>
-    </div></div>
-    <div class="flickr_pagination mb-4">
-      <%= will_paginate @products, :container => false %>
-    </div>
+  </div></div>
+</div>
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @products, :container => false %>
+</div>

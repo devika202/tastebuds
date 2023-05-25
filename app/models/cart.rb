@@ -2,7 +2,7 @@ class Cart < ApplicationRecord
   include Cartable
   belongs_to :user
   has_many :cart_items, dependent: :destroy
-  has_many :products, through: :cart_items
+  has_many :products, through: :cart_items, dependent: :destroy
   def clear_cart
     cart_items.destroy_all
   end

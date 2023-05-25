@@ -1,0 +1,31 @@
+/* Media query for small screens */
+@media (max-width: 767px) {
+    .new {
+      margin-left: 0;
+    }
+    .new1 {
+      margin-top: 0;
+    }
+  }
+  
+  /* Media query for medium-sized screens */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .new {
+      margin-left: 50px;
+    }
+    .new1 {
+      margin-top: 50px;
+    }
+  }
+  
+  /* Media query for large screens */
+  @media (min-width: 992px) {
+    .new {
+      margin-left: 100px;
+    }
+    .new1 {
+      margin-top: 100px;
+    }
+  }
+  
+  

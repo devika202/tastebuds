@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_19_051535) do
+ActiveRecord::Schema.define(version: 2023_05_21_125103) do
 
   create_table "accountings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "order_id"
@@ -127,7 +127,8 @@ ActiveRecord::Schema.define(version: 2023_05_19_051535) do
     t.text "image_data"
     t.integer "category_id"
     t.integer "quantity"
-    t.string "weight"
+    t.integer "weight"
+    t.string "weight_unit"
   end
 
   create_table "reviews", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -149,8 +150,9 @@ ActiveRecord::Schema.define(version: 2023_05_19_051535) do
     t.date "purchase_date"
     t.integer "shop_id"
     t.date "date_of_purchase"
-    t.string "weight"
+    t.integer "weight"
     t.bigint "order_id"
+    t.string "weight_unit"
     t.index ["order_id"], name: "index_sales_reports_on_order_id"
   end
 

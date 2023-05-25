@@ -1,23 +1,22 @@
-<div id="page-content">
-    <div class="container" id="home-container">
-        <div class="jumbotron text-center text-dark"><br><br>
-        <br><br><br>
-          <h1 class="display-4">Welcome to Taste Buds</h1>
-          <p class="lead"><b>Explore the taste of nature <br>Quality is our promise !!! we are there with the best</b></p><br>
-          <div class="text">
-          <% unless current_shop %>
-            <% if !user_signed_in? %>
-              <%= link_to 'LOGIN', new_user_session_path, class: "btn btn-info btn-lg text-dark" %>
-              <%= link_to 'SIGN UP', new_user_registration_path, class: "btn btn-info btn-lg text-dark" %>
-              <%= link_to 'SHOP LOGIN', '/shops/login', class: "btn btn-info btn-lg text-dark" %>
-            <% else %>
-              <%= link_to 'SHOP', products_path, class: "btn btn-info btn-lg text-dark" %>
-            <% end %>
+<div class="jumbotron" >
+  <div class=" text-center text-dark"><br><br>
+    <br><br><br>
+      <h1 class="display-4">Welcome to Taste Buds</h1>
+      <p class="lead"><b>Explore the taste of nature <br>Quality is our promise !!! we are there with the best</b></p><br>
+      <div class="text">
+      <% unless current_shop %>
+        <% if !user_signed_in? %>
+          <%= link_to 'LOGIN', new_user_session_path, class: "btn btn-info btn-lg text-dark" %>
+          <%= link_to 'SIGN UP', new_user_registration_path, class: "btn btn-info btn-lg text-dark" %>
+          <%= link_to 'SHOP LOGIN', '/shops/login', class: "btn btn-info btn-lg text-dark" %>
+        <% else %>
+          <%= link_to 'SHOP', products_path, class: "btn btn-info btn-lg text-dark" %>
+        <% end %>
+      <% end %>
+        <% if current_shop %>
+            <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-info btn-lg text-dark" %>
           <% end %>
-           <% if current_shop %>
-                <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-info btn-lg text-dark" %>
-             <% end %>
-          </div>
-        </div>
-    </div>
+      </div>
+  </div>
 </div>
+

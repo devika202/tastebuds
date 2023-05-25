@@ -19,7 +19,7 @@
                 <tr>
                     <td><%= sales_report.product_name %></td>
                     <td><%= sales_report.price %></td>
-                    <td><%= sales_report.weight %></td>
+                    <td scope="row"><%= "#{sales_report.weight} #{sales_report.weight_unit}" %></td>
                     <td><%= sales_report.quantity %></td>
                     <td><%= sales_report.total_price %></td>
                     <td><%= sales_report.date_of_purchase %></td>

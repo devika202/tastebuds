@@ -1,32 +1,4 @@
-@media screen and (max-width: 320px) {
-  .my-element {
-    width: 100%;
-  }
-}
 
-@media screen and (min-width: 320px) {
-  .my-element {
-    width: 50%;
-  }
-}
-@media (max-width: 767px) {
-  .col-md-3 {
-    width: 100%;
-  }
-  .col-md-9 {
-    width: 100%;
-  }
-  .category {
-    font-size: 14px;
-  }
-}
-
-#error_explanation {
-  color: red;
-  ul li {
-    list-style: none;
-  }
-}
 
   .navbar-brand#logo {
     position: absolute;
@@ -78,24 +50,23 @@
   width:auto;
 }
 
+
 .jumbotron {
     background-image: asset-url('download.jpg');
     background-size: cover;
-    height: 816px;
-    width: 1914px;
-    margin-left: -306px;
-    margin-top: -76px;
-    margin-bottom: -9px;
-    border-radius: 2.3rem;
+    height: 738px;
+    width: 1948px;
+    margin-left: -28px;
+    margin-top: 32px;
   }
   .text2{
     margin-top: -76px;
   }
   .jumbotrons {
     position: relative;
-    height: 820px;
-    width: 1928px;
-    margin-left: -320px;
+    height: 800px;
+    width: 1930px;
+    margin-left: -414px;
     margin-top: -77px;
     margin-bottom: -9px;
     border-radius: 0.3rem;
