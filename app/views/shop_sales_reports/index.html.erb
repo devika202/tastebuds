@@ -3,7 +3,7 @@
 <div class="container">
  <% if @sales_reports.any? %>
     <table class="table table-striped table-bordered table-hover">
-        <thead>
+        <thead class="thead-dark">
             <tr>
             <th scope="col">Product Name</th>
             <th scope="col">Price</th>
@@ -12,20 +12,22 @@
             <th scope="col">Total Price</th>
             <th scope="col">Date of Purchase</th>
             <th scope="col">Category</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
             <% @sales_reports.each do |sales_report| %>
                 <tr>
-                    <td><%= sales_report.product_name %></td>
-                    <td><%= sales_report.price %></td>
+                    <td scope="row"><%= sales_report.product_name %></td>
+                    <td scope="row"><%= sales_report.price %></td>
                     <td scope="row"><%= "#{sales_report.weight} #{sales_report.weight_unit}" %></td>
-                    <td><%= sales_report.quantity %></td>
-                    <td><%= sales_report.total_price %></td>
-                    <td><%= sales_report.date_of_purchase %></td>
-                    <td><%= sales_report.category.name %></td>
-                    <td><%= link_to "Edit", edit_shop_sales_report_path(sales_report), class: "btn btn-primary" %></td>
-                    <td><%= link_to "Delete", shop_sales_report_path(sales_report), method: :delete, data: { confirm: "Are you sure you want to delete this sales report?" }, class: "btn btn-danger" %></td>
+                    <td scope="row"><%= sales_report.quantity %></td>
+                    <td scope="row"><%= sales_report.total_price %></td>
+                    <td scope="row"><%= sales_report.date_of_purchase %></td>
+                    <td scope="row"><%= sales_report.category.name %></td>
+                    <td scope="row"><%= link_to "Edit", edit_shop_sales_report_path(sales_report), class: "btn btn-primary" %></td>
+                    <td scope="row"><%= link_to "Delete", shop_sales_report_path(sales_report), method: :delete, data: { confirm: "Are you sure you want to delete this sales report?" }, class: "btn btn-danger" %></td>
                 </tr>
             <% end %>
         </tbody>
