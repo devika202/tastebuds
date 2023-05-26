@@ -20,14 +20,25 @@
           <%= f.number_field :price_lteq, class: 'form-control', placeholder: 'Max Price', style: 'width: 300px;' %><br>
           <%= f.submit "FILTER",  class: 'btn btn-primary' %>
         <% end %>
+      
+        <% if current_page?(products_path) %>
+          <form class="d-flex me-5 search-form">
+            <%= search_form_for @search do |f| %>
+              <%= f.text_field :product_title_or_description_cont, class: 'form-control form-control-sm text-dark', placeholder: 'Search by product title or description' %>&nbsp; &nbsp;
+              <button class="btn btn-outline-dark" type="submit">Search</button>
+            <% end %>
+          </form>
+        <% end %>
+        </div>
+      </div>
+      <div class="container" style="max-width: 1250px;">
+        <div class="col-md-10">
+          <%= render 'product'%>
+        </div>
       </div>
     </div>
-    <div class="container" style="max-width: 1250px;">
-    <div class="col-md-9">
-      <%= render 'product'%>
-    </div>
-  </div></div>
-</div><br>
+  </div>
+<br>
 <div class="flickr_pagination mb-4">
   <%= will_paginate @products, :container => false %>
 </div>

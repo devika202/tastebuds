@@ -1,4 +1,115 @@
-.navbar-brand#logo {
+@media (max-width: 767px) {
+  .display-4 {
+    font-size: 2rem;
+  }
+  .lead {
+    font-size: 1.2rem;
+  }
+  .btn {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .display-4 {
+    font-size: 3rem;
+  }
+  .lead {
+    font-size: 1.5rem;
+  }
+  .btn {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .display-4 {
+    font-size: 4rem;
+  }
+  .lead {
+    font-size: 2rem;
+  }
+  .btn {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    justify-content: flex-start;
+  }
+  
+  .navbar-nav {
+    margin-bottom: 0;
+  }
+
+  .navbar-nav .nav-item {
+    margin-right: 10px;
+  }
+
+  .navbar-nav .nav-link {
+    padding: 0.5rem;
+  }
+
+  .navbar-nav .dropdown-menu {
+    position: static !important;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
+
+  .navbar-toggler {
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .navbar-collapse {
+    display: none;
+  }
+
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-expanded .navbar-collapse {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .new1 .col-md-4 {
+    width: 100%;
+    max-width: 315px;
+    margin-bottom: 20px;
+  }
+
+  .new1 .card {
+    width: 100%;
+    max-width: 315px;
+    height: auto;
+  }
+
+  .new1 .card-img-top {
+    height: 200px;
+  }
+}
+
+
+  #sticky-footer {
+    width: 100%;
+  }
+  .search-form {
+    position: absolute;
+    top: -128px;
+    right: -1392px;
+    width: 330px;
+}
+  
+  .navbar-brand#logo {
     position: absolute;
     left: 50%;
     font-size: 3em;
@@ -15,38 +126,39 @@
   }
   #home-container {
     margin-top: 75px;
-}
-#about-container {
-  margin-top: 75px;
-}
-.bg-dark {
-    background-color: #000000!important;
-}
-.new{
-  margin-left: -264px;
-}
-.size{
-  height: 50%;
-  width: 50%;
-}
-.new1{
-  margin-top: 12px;
-}
-.showallign{
-  margin-left: 232px;
-  margin-top: 22px;
-}
-.text {
-  color: black;
-}
+  }
+  #about-container {
+    margin-top: 75px;
+  }
+  body .bg-dark {
+    background-color: black !important;
+  }
+  
+  .new{
+    margin-left: -264px;
+  }
+  .size{
+    height: 50%;
+    width: 50%;
+  }
+  .new1{
+    margin-top: 12px;
+  }
+  .showallign{
+    margin-left: 232px;
+    margin-top: 22px;
+  }
+  .text {
+    color: black;
+  }
 
-.text{
-  margin-left: -1027px;
+  .text{
+    margin-left: -1027px;
 
-}
-.width{
-  width:auto;
-}
+  }
+  .width{
+    width:auto;
+  }
 
 .jumbotron {
     background-image: asset-url('download.jpg');
@@ -78,7 +190,7 @@
   content: "";
   background-image: asset-url('image2.jpg');
   background-size: cover;
-  height: 809px;
+  height: 828px;
   width: 1920px;
   margin-left: -405px;
   margin-top: 0px;
@@ -133,27 +245,27 @@ body {
   .flickr_pagination a, .flickr_pagination span, .flickr_pagination em {
     padding: 0.2em 0.5em; 
   border-radius: 5px;
-  }
-  .flickr_pagination .disabled {
-    color: #000000; }
-  .flickr_pagination .current {
-    font-style: normal;
-    font-weight: bold;
-    color: #ff0084; }
-  .flickr_pagination a {
-    border: 1px solid rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-    text-decoration: none; }
-    .flickr_pagination a:hover, .flickr_pagination a:focus {
-      border-color: rgb(0, 0, 0);
-      background: rgb(0, 0, 0);
-      color: gray; }
-  .flickr_pagination .page_info {
-    color: #aaaaaa;
-    padding-top: 0.8em; }
-  .flickr_pagination .previous_page, .flickr_pagination .next_page {
-    border-width: 2px; }
-  .flickr_pagination .previous_page {
-    margin-right: 1em; }
-  .flickr_pagination .next_page {
-    margin-left: 1em; }
+}
+.flickr_pagination .disabled {
+  color: #000000; }
+.flickr_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  color: #ff0084; }
+.flickr_pagination a {
+  border: 1px solid rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  text-decoration: none; }
+  .flickr_pagination a:hover, .flickr_pagination a:focus {
+    border-color: rgb(0, 0, 0);
+    background: rgb(0, 0, 0);
+    color: gray; }
+.flickr_pagination .page_info {
+  color: #aaaaaa;
+  padding-top: 0.8em; }
+.flickr_pagination .previous_page, .flickr_pagination .next_page {
+  border-width: 2px; }
+.flickr_pagination .previous_page {
+  margin-right: 1em; }
+.flickr_pagination .next_page {
+  margin-left: 1em; }

@@ -1,144 +1,125 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to "TASTE BUDS", root_path, class:"navbar-brand", id:"logo" %>
+    <%= link_to "TASTE BUDS", root_path, class: "navbar-brand", id: "logo" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
-      <ul class="navbar-nav mb-2 mb-lg-0 ">
-      <% unless current_page?(root_path) %>
-        <% if current_shop %>&nbsp; &nbsp; &nbsp;
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <% unless current_page?(root_path) %>
+          <% if current_shop %>&nbsp; &nbsp; &nbsp;
             <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
-        <% end %>
-      <% end %>
-
-      <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
-
-      <% unless current_shop %>
-        <% if user_signed_in? && current_user.admin? %>
-          <li class="nav-item dropdown">
-            <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenu" aria-expanded="false" data-turbo="false">
-              PRODUCTS
-            </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdownMenu" data-turbo="false">
-                  <%= link_to "Create new product",new_product_path,class:"dropdown-item" %>
-                <%= link_to "View Products",products_path,class:"dropdown-item" %>
-              </div>                     
-          </li>
-        <% else %>
-          &nbsp; <%= link_to "PRODUCTS",products_path, class:"btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
-        <% end %> 
-
-        <% if !current_user || (user_signed_in? && !current_user.admin? && !current_shop) %>
-            <%= link_to "SHOPS", shops_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
-        <% end %>
-
-        
-
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdown"  aria-expanded="false">
-              <%= "(Admin)" if current_user.admin? %> PROFILE <%= current_user.username %>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
-            <%= link_to "View your profile", current_user, class: "dropdown-item" %>
-              <%= link_to "Edit your profile", edit_user_registration_path, class: "dropdown-item" %>
-              <div class="dropdown-divider"></div>
-              <% unless current_user.admin? %>
-                <%= link_to 'Order History', order_history_path, class: "dropdown-item" %>
-              <% end %>
-              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-            </div>
-          </li>
-
-          <% if user_signed_in? && current_user.admin? %>
-            <li class="nav-item dropdown">
-              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
-                CATEGORIES
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
-                <%= link_to "Create new category",new_category_path,class:"dropdown-item" %>
-                <%= link_to "View categories",categories_path,class:"dropdown-item" %>
-            </li>
           <% end %>
         <% end %>
-
-        <% if user_signed_in? && current_user.admin? %>
-        <li class="nav-item dropdown">
+        <% if current_user && !current_user.admin? %>
+          <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
+        <% end %>
+        <% unless current_shop %>
+          <% if user_signed_in? && current_user.admin? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenu" aria-expanded="false" data-turbo="false">
+                PRODUCTS
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdownMenu" data-turbo="false">
+                <%= link_to "Create new product", new_product_path, class: "dropdown-item" %>
+                <%= link_to "View Products", products_path, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% else %>
+            &nbsp; <%= link_to "PRODUCTS", products_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
+          <% end %>
+          <% if !current_user || (user_signed_in? && !current_user.admin? && !current_shop) %>
+            <%= link_to "SHOPS", shops_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
+          <% end %>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdown" aria-expanded="false">
+                <%= "(Admin)" if current_user.admin? %> PROFILE <%= current_user.username %>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                <%= link_to "View your profile", current_user, class: "dropdown-item" %>
+                <%= link_to "Edit your profile", edit_user_registration_path, class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <% unless current_user.admin? %>
+                  <%= link_to 'Order History', order_history_path, class: "dropdown-item" %>
+                <% end %>
+                <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+              </div>
+            </li>
+            <% if user_signed_in? && current_user.admin? %>
+              <li class="nav-item dropdown">
+                <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                  CATEGORIES
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                  <%= link_to "Create new category", new_category_path, class: "dropdown-item" %>
+                  <%= link_to "View categories", categories_path, class: "dropdown-item" %>
+                </div>
+              </li>
+            <% end %>
+          <% end %>   
+      </ul>
+      <div class="d-flex">
+      <% if user_signed_in? && current_user.admin? %>
+            <li class="nav-item dropdown">
               <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
                 USERS
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
-                <%= link_to "Users", users_path,class:"dropdown-item" %>
+                <%= link_to "Users", users_path, class: "dropdown-item" %>
                 <%= link_to 'Order History', admin_orders_path, class: "dropdown-item" %>
+              </div>
             </li>
-         
+          <% end %>
         <% end %>
-      <% end %>
-      </ul>
-        <div class="d-flex">
-          <% if user_signed_in? %>
-              <% unless current_user.admin? %>
-                <li class="nav-item">
-                  <% if current_user %>
-                    <% cart = current_user.cart || current_user.create_cart %>
-                    <%= link_to "CART", cart_path(cart), class: "btn btn-outline-light" %>
-                    <% if cart.cart_items.empty? %>
-                      <span class="badge bg-danger ms-2">0</span>
-                    <% else %>
-                      <span class="badge bg-danger ms-2"><%= cart.cart_items.count %></span>
-                    <% end %>
-                  <% else %>
-                    <%= link_to "CART", new_cart_path, class: "btn btn-outline-light" %>
-                  <% end %>
-                </li>
-              <% end %>
-            <% end %>
-
-            &nbsp; &nbsp; 
-            
-            <% if current_page?(products_path) %>
-              <form class="d-flex me-3">
-                <%= search_form_for @search do |f| %>
-                  <%= f.text_field :product_title_or_description_cont, class: 'form-control me-2 text-dark', placeholder: 'search by product title or description' %>&nbsp;
-                  <button class="btn btn-outline-light" type="submit">Search</button>
+        <% if user_signed_in? %>
+          <% unless current_user.admin? %>
+            <li class="nav-item">
+              <% if current_user %>
+                <% cart = current_user.cart || current_user.create_cart %>
+                <%= link_to "CART", cart_path(cart), class: "btn btn-outline-light" %>
+                <% if cart.cart_items.empty? %>
+                  <span class="badge bg-danger ms-2">0</span>
+                <% else %>
+                  <span class="badge bg-danger ms-2"><%= cart.cart_items.count %></span>
                 <% end %>
-              </form>
-            <% end %>
-
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <% if user_signed_in? && current_user.admin? %>
-                <li class="nav-item dropdown">
-                  <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
-                    ACCOUNTING
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
-                    <%= link_to 'Add Accounting', new_admin_accounting_path, class: "dropdown-item" %>
-                    <%= link_to 'Accounting Report', admin_accounting_index_path, class: "dropdown-item" %>
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
-                    SHOPS
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
-                    <%= link_to 'New Shop', new_shop_path, class: "dropdown-item" %>
-                    <%= link_to 'Shops', admin_shops_path, class: "dropdown-item" %>
-                    <%= link_to "View Sales Reports", admin_sales_reports_path, class: "dropdown-item" %>
-                  </div>
-                </li>
+              <% else %>
+                <%= link_to "CART", new_cart_path, class: "btn btn-outline-light" %>
               <% end %>
-              
-              <% if user_signed_in? %>
-                <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %></li>
-              <% end %>
-              <% if current_shop %>
-                <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>&nbsp; &nbsp; &nbsp;
-              <% end %>
-
-            </ul>
-          </div>
-        </div>
+            </li>
+          <% end %>
+        <% end %>
+        &nbsp; &nbsp;
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <% if user_signed_in? && current_user.admin? %>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                ACCOUNTING
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                <%= link_to 'Add Accounting', new_admin_accounting_path, class: "dropdown-item" %>
+                <%= link_to 'Accounting Report', admin_accounting_index_path, class: "dropdown-item" %>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+                SHOPS
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+                <%= link_to 'New Shop', new_shop_path, class: "dropdown-item" %>
+                <%= link_to 'Shops', admin_shops_path, class: "dropdown-item" %>
+                <%= link_to "View Sales Reports", admin_sales_reports_path, class: "dropdown-item" %>
+              </div>
+            </li>
+          <% end %>
+          <% if user_signed_in? %>
+            <li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete, class: "nav-link text-light", data: { turbo_method: :delete } %></li>
+          <% end %>
+          <% if current_shop %>
+            <li><%= link_to 'LOGOUT', '/shops/logout', method: :delete, class: "nav-link text-light" %></li>&nbsp; &nbsp; &nbsp;
+          <% end %>
+        </ul>
+      </div>
     </div>
+  </div>
 </nav>
-
