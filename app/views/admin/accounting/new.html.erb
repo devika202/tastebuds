@@ -14,24 +14,19 @@
             </ul>
           </div>
         <% end %>
-        <div class="form-group row form-label justify-content-center align-items-center">
-          <%= f.label :source, class: "col-3 col-form-label text-dark text-center" %>
-          <% used_order_ids = Accounting.pluck(:order_id) %>
-          <% used_sales_report_ids = Accounting.pluck(:sales_report_id) %>
-            <div class="col-8">
-            <%= f.select :source, options_for_select([['Select Source', nil], ['Shop Sale', 'Shop Sale'], ['Online Sale', 'Online Sale']].reject { |option| used_order_ids.include?(option[1].to_i) || used_sales_report_ids.include?(option[1].to_i) }), class: "form-control shadow rounded" %>
-          </div>
-        </div><br>
+
+        <% used_order_ids = Accounting.pluck(:order_id) %>
+        <% used_sales_report_ids = Accounting.pluck(:sales_report_id) %>
 
         <div class="form-group row form-label justify-content-center align-items-center">
-          <%= f.label :online_sale, "Order_ID", class: "col-3 col-form-label text-dark text-center" %>
-            <div class="col-9">
+          <%= f.label :online_sale, "Online sale", class: "col-5 col-form-label text-dark text-center" %>
+            <div class="col-5">
             <%= f.select :order_id, options_for_select([['Select Order', nil]] + @orders.reject { |order| used_order_ids.include?(order.id) }.map { |order| [order.id, order.id] }), class: "form-control shadow rounded" %>
           </div>
         </div><br>
 
         <div class="form-group row form-label justify-content-center align-items-center">
-          <%= f.label :shop_sale, "SalesReport_ID", class: "col-5 col-form-label text-dark text-center" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <%= f.label :shop_sale, "Shop sale", class: "col-5 col-form-label text-dark text-center" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <div class="col-5">  
             <%= f.select :sales_report_id, options_for_select([['Select Sales Report', nil]] + @sales_reports.reject { |report| used_sales_report_ids.include?(report.id) }.map { |report| [report.id, report.id] }), class: "form-control shadow rounded" %>
           </div>

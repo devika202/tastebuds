@@ -6,7 +6,7 @@ class Product < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :carts, through: :cart_items
   has_many :reviews, dependent: :destroy
-  validates :product_title, presence: true, length: { minimum: 6, maximum: 30 }
+  validates :product_title, presence: true, length: { minimum: 6, maximum: 50 }
   validates :description, presence: true, length: { minimum: 10, maximum: 3000 }
   validates :sku_id, presence: true, uniqueness: true
   validates :weight, presence: true
