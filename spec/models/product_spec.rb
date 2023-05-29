@@ -37,7 +37,7 @@ RSpec.describe Product, type: :model do
   describe "validations" do
     it "validates presence and length of product_title" do
       expect(subject).to validate_presence_of(:product_title)
-      expect(subject).to validate_length_of(:product_title).is_at_least(6).is_at_most(30)
+      expect(subject).to validate_length_of(:product_title).is_at_least(6).is_at_most(50)
     end
 
     it "validates presence and length of description" do

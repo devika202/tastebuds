@@ -17,7 +17,6 @@ Rails.application.routes.draw do
   post '/checkout', to: 'checkout#create', as: 'create_order'
   resources :orders, only: [:show, :create]
   resources :carts, only: [:show, :create, :update, :destroy]
-  post '/search', to: 'products#search', as: 'products_search'
   post '/search', to: 'shop_sales_reports#search', as: 'shop_sales_reports_search'
   resources :users, only: [:destroy]
   get '/orders/:id/confirmation', to: 'orders#order_confirmation', as: 'order_confirmation'
@@ -34,20 +33,17 @@ Rails.application.routes.draw do
   resources :shops
   namespace :admin do
     resources :orders, only: [:index, :show, :edit, :update]
-    resources :shops, only: [:new, :create, :edit, :update, :index ,:destroy]
+    resources :shops, only: [:new, :create, :edit, :update, :index, :destroy]
     get '/sales_reports', to: 'shop_sales_reports#admin_index'
   end
   resources :products do
     resources :reviews
   end
   namespace :admin do
-    resources :accounting, only: [:index, :new, :create, :edit, :update ,:destroy] do
+    resources :accounting, only: [:index, :new, :create, :edit, :update, :destroy] do
       collection do
-        get 'search' 
+        get 'search'
       end
     end
   end
-  
-  
-
 end
