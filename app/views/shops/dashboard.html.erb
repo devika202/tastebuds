@@ -1,6 +1,10 @@
-<br><br><br><br>
-<h1 class="text-center mt-4">Welcome to your shop dashboard <br> <%= current_shop.name %>!</h1><br><br><br>
-<div class="text-center">
-  <%= link_to "Add Sales Report", new_shop_sales_report_path, class: "btn btn-primary" %>
-  <%= link_to "View Sales Reports", shop_sales_reports_path, class: "btn btn-primary" %>
+<br><br><br><br><br><br>
+<div class="border border-dark p-2" style="--bs-border-opacity: .5;"><br><br>
+<div class="shadow-lg p-3 mb-5 bg-body-tertiary rounded">
+  <h1 class="text-center mt-4">Welcome to your shop dashboard <br><br> <%= current_shop.name %>!</h1><br><br><br>
+  <div class="text-center">
+    <%= link_to "Add Sales Report", new_shop_sales_report_path, class: "btn btn-primary" %>
+    <%= link_to "View Sales Reports", shop_sales_reports_path, class: "btn btn-primary" %>
+  </div>
+</div>
 </div>

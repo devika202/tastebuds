@@ -7,8 +7,10 @@
     <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
       <ul class="navbar-nav mb-2 mb-lg-0">
         <% unless current_page?(root_path) %>
-          <% if current_shop %>&nbsp; &nbsp; &nbsp;
-            <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
+          <% unless current_page?(shop_dashboard_path) %>
+            <% if current_shop %>&nbsp; &nbsp; &nbsp;
+              <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
+            <% end %>
           <% end %>
         <% end %>
         <% if current_user && !current_user.admin? %>
