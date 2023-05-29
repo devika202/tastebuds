@@ -1,4 +1,3 @@
-# spec/models/accounting_spec.rb
 require 'rails_helper'
 RSpec.describe Accounting, type: :model do
     describe 'associations' do
