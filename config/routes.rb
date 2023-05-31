@@ -37,7 +37,7 @@ Rails.application.routes.draw do
     get '/sales_reports', to: 'shop_sales_reports#admin_index'
   end
   resources :products do
-    resources :reviews
+    resources :reviews, only: [:create, :destroy]
   end
   namespace :admin do
     resources :accounting, only: [:index, :new, :create, :edit, :update, :destroy] do

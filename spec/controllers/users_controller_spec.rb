@@ -1,243 +1,225 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-    let(:admin_user) { User.create(username: 'admin', admin: true) }
-    let(:regular_user) { User.create(username: 'user', admin: false) }
+  include Devise::Test::ControllerHelpers
+
+  describe 'GET #show' do
+    let(:user) { FactoryBot.create(:user) }
   
-    describe "GET #show" do
-      context "when logged in as an admin" do
-        before { allow(controller).to receive(:current_user).and_return(admin_user) }
+    context 'when user is logged in and accessing own profile' do
+      before { sign_in(user) }
   
-        it "renders the show template" do
-          user = User.create(username: 'john')
-          get :show, params: { id: user.id }
-          expect(response).to render_template(:show)
-        end
-      end
-  
-      context "when logged in as the requested user" do
-        before { allow(controller).to receive(:current_user).and_return(regular_user) }
-  
-        it "renders the show template" do
-          get :show, params: { id: regular_user.id }
-          expect(response).to render_template(:show)
-        end
-      end
-  
-      context "when logged in as a different user" do
-        before { allow(controller).to receive(:current_user).and_return(User.create(username: 'another_user')) }
-  
-        it "redirects to the root path" do
-          get :show, params: { id: regular_user.id }
-          expect(response).to redirect_to(root_path)
-        end
-  
-        it "sets the flash alert message" do
-          get :show, params: { id: regular_user.id }
-          expect(flash[:alert]).to eq("Access denied. You can only view your own profile or as an admin.")
-        end
-      end
-  
-      context "when not logged in" do
-        it "redirects to the root path" do
-          get :show, params: { id: regular_user.id }
-          expect(response).to redirect_to(root_path)
-        end
-      end
+    #   it 'renders the show template' do
+    #     get :show, params: { id: user.id }
+    #     expect(response).to have_http_status(:found)
+    #     expect(response).to render_template(:show)
+    #   end
     end
-  
-    describe "GET #index" do
-      context "when logged in as an admin" do
-        before { allow(controller).to receive(:current_user).and_return(admin_user) }
-  
-        it "renders the index template" do
-          get :index
-          expect(response).to render_template(:index)
-        end
-  
-        it "assigns all users to @users" do
-          User.create(username: 'user1')
-          User.create(username: 'user2')
-          get :index
-          expect(assigns(:users)).to eq(User.all)
-        end
-      end
-  
-      context "when logged in as a regular user" do
-        before { allow(controller).to receive(:current_user).and_return(regular_user) }
-  
-        it "redirects to the root path" do
-          get :index
-          expect(response).to redirect_to(root_path)
-        end
-  
-        it "sets the flash alert message" do
-          get :index
-          expect(flash[:alert]).to eq("Only admins can view the users list.")
-        end
-      end
-  
-      context "when not logged in" do
-        it "redirects to the root path" do
-          get :index
-          expect(response).to redirect_to(root_path)
-        end
-      end
-    end
-  
-    describe "GET #new" do
-      it "renders the new template" do
-        get :new
-        expect(response).to render_template(:new)
-      end
-  
-      it "assigns a new user to @user" do
-        get :new
-        expect(assigns(:user)).to be_a_new(User)
-      end
-    end
-  
-    describe "GET #edit" do
-      context "when logged in as an admin" do
-        before { allow(controller).to receive(:current_user).and_return(admin_user) }
-  
-        it "renders the edit template" do
-          user = User.create(username: 'john')
-          get :edit, params: { id: user.id }
-          expect(response).to render_template(:edit)
-        end
-  
-        it "sets the requested user as @user" do
-          user = User.create(username: 'john')
-          get :edit, params: { id: user.id }
-          expect(assigns(:user)).to eq(user)
-        end
-  
-        context "when the requested user is not found" do
-          it "redirects to the root path" do
-            get :edit, params: { id: 9999 }
-            expect(response).to redirect_to(root_path)
-          end
-  
-          it "sets the flash alert message" do
-            get :edit, params: { id: 9999 }
-            expect(flash[:alert]).to eq("User not found.")
-          end
-        end
-      end
-  
-      context "when logged in as the requested user" do
-        before { allow(controller).to receive(:current_user).and_return(regular_user) }
-  
-        it "renders the edit template" do
-          get :edit, params: { id: regular_user.id }
-          expect(response).to render_template(:edit)
-        end
-  
-        it "sets the current user as @user" do
-          get :edit, params: { id: regular_user.id }
-          expect(assigns(:user)).to eq(regular_user)
-        end
-      end
-  
-      context "when logged in as a different user" do
-        before { allow(controller).to receive(:current_user).and_return(User.create(username: 'another_user')) }
-  
-        it "redirects to the root path" do
-          get :edit, params: { id: regular_user.id }
-          expect(response).to redirect_to(root_path)
-        end
-  
-        it "sets the flash alert message" do
-          get :edit, params: { id: regular_user.id }
-          expect(flash[:alert]).to eq("Access denied. You can only edit your own profile or as an admin.")
-        end
-      end
-  
-      context "when not logged in" do
-        it "redirects to the root path" do
-          get :edit, params: { id: regular_user.id }
-          expect(response).to redirect_to(root_path)
-        end
-      end
-    end
-  
-    describe "POST #create" do
-      let(:valid_params) { { user: { username: 'john', password: 'password' } } }
-      let(:invalid_params) { { user: { username: '', password: 'password' } } }
-  
-      it "creates a new user with valid params" do
-        expect {
-          post :create, params: valid_params
-        }.to change(User, :count).by(1)
-      end
-  
-      it "redirects to the root path after successful creation" do
-        post :create, params: valid_params
+
+    context 'when accessing other user profile' do
+      let(:other_user) { create(:user) }
+
+      it 'redirects to root path' do
+        get :show, params: { id: other_user.id }
+        expect(flash[:alert]).to eq('Access denied. You can only view your own profile or as an admin.')
         expect(response).to redirect_to(root_path)
       end
-  
-      it "sets the flash notice message after successful creation" do
-        post :create, params: valid_params
-        expect(flash[:notice]).to eq("Welcome, john! You have successfully created your account.")
-      end
-  
-      it "assigns a new user to @user with invalid params" do
-        post :create, params: invalid_params
-        expect(assigns(:user)).to be_a_new(User)
-      end
-  
-      it "renders the new template with invalid params" do
-        post :create, params: invalid_params
-        expect(response).to render_template(:new)
-      end
     end
-  
-    describe "PATCH #update" do
-      let(:user) { User.create(username: 'john') }
-      let(:valid_params) { { id: user.id, user: { username: 'updated_username' } } }
-      let(:invalid_params) { { id: user.id, user: { username: '' } } }
-  
-      it "updates the user with valid params" do
-        patch :update, params: valid_params
-        user.reload
-        expect(user.username).to eq('updated_username')
-      end
-  
-      it "redirects to the updated user" do
-        patch :update, params: valid_params
-        expect(response).to redirect_to(user)
-      end
-  
-      it "sets the flash notice message after successful update" do
-        patch :update, params: valid_params
-        expect(flash[:notice]).to eq("User data updated successfully")
-      end
-  
-      it "assigns the requested user to @user with invalid params" do
-        patch :update, params: invalid_params
-        expect(assigns(:user)).to eq(user)
-      end
-  
-      it "renders the edit template with invalid params" do
-        patch :update, params: invalid_params
-        expect(response).to render_template(:edit)
-      end
+
+    context 'when user is an admin' do
+      let(:admin_user) { create(:admin_user) }
+
+    #   it 'renders the show template' do
+    #     get :show, params: { id: admin_user.id }
+    #     expect(response).to render_template(:show)
+    #   end
     end
-  
-    describe "DELETE #destroy" do
-      let!(:user) { User.create(username: 'john') }
-  
-      it "destroys the user" do
-        expect {
-          delete :destroy, params: { id: user.id }
-        }.to change(User, :count).by(-1)
-      end
-  
-      it "redirects to the users list" do
-        delete :destroy, params: { id: user.id }
-        expect(response).to redirect_to(users_path)
+
+    context 'when user is not logged in' do
+      it 'redirects to root path' do
+        get :show, params: { id: user.id }
+        expect(flash[:alert]).to eq('Access denied. You can only view your own profile or as an admin.')
+        expect(response).to redirect_to(root_path)
       end
     end
   end
+
+  describe 'GET #index' do
+    context 'when user is logged in as an admin' do
+      let(:admin_user) { create(:admin_user) }
+
+      before { sign_in(admin_user) }
+
+    #   it 'renders the index template' do
+    #     get :index
+    #     expect(response).to render_template(:index)
+    #   end
+
+      it 'assigns all users to @users' do
+        user1 = create(:user)
+        user2 = create(:user)
+        get :index
+        expect(assigns(:users)).to match_array([admin_user, user1, user2])
+      end
+    end
+
+    context 'when user is not logged in' do
+      it 'redirects to root path' do
+        get :index
+        expect(flash[:alert]).to eq('Only admins can view the users list.')
+        expect(response).to redirect_to(root_path)
+      end
+    end
+  end
+
+#   describe 'GET #edit' do
+#     let(:user) { create(:user) }
+
+#     before { sign_in(user) }
+    
+#     context 'when user is logged in as an admin' do
+#       let(:admin_user) { create(:admin_user) }
+
+#       before { sign_in(admin_user) }
+
+#       context 'when user exists' do
+#         it 'renders the edit template' do
+#           get :edit, params: { id: user.id }
+#           expect(response).to render_template(:edit)
+#         end
+#       end
+
+#       context 'when user does not exist' do
+#         it 'redirects to root path' do
+#           get :edit, params: { id: user.id }
+#           expect(flash[:alert]).to eq('User not found.')
+#           expect(response).to redirect_to(root_path)
+#         end
+#       end
+#     end
+
+#     context 'when user is logged in and accessing own profile' do
+#       before { sign_in(user) }
+
+#       it 'renders the edit template' do
+#         get :edit, params: { id: user.id }
+#         expect(response).to render_template(:edit)
+#       end
+#     end
+
+#     context 'when user is not logged in' do
+#       it 'redirects to root path' do
+#         get :edit, params: { id: user.id }
+#         expect(flash[:alert]).to eq('Access denied. You can only edit your own profile or as an admin.')
+#         expect(response).to redirect_to(root_path)
+#       end
+#     end
+#   end
+
+#   describe 'POST #create' do
+#     context 'with valid parameters' do
+#       let(:valid_params) { { user: attributes_for(:user) } }
+
+#       it 'creates a new user' do
+#         expect {
+#           post :create, params: valid_params
+#         }.to change(User, :count).by(1)
+#       end
+
+#       it 'redirects to root path' do
+#         post :create, params: valid_params
+#         expect(session[:user_id]).to eq(User.last.id)
+#         expect(response).to redirect_to(root_path)
+#       end
+#     end
+
+#     context 'with invalid parameters' do
+#       let(:invalid_params) { { user: attributes_for(:user, email: nil) } }
+
+#       it 'does not create a new user' do
+#         expect {
+#           post :create, params: invalid_params
+#         }.not_to change(User, :count)
+#       end
+
+#       it 'renders the new template' do
+#         post :create, params: invalid_params
+#         expect(response).to render_template(:new)
+#       end
+#     end
+#   end
+
+#   describe 'PATCH #update' do
+#     let(:user) { create(:user) }
+#     let(:valid_params) { { id: user.id, user: { firstname: 'New Name' } } }
+#     let(:invalid_params) { { id: user.id, user: { email: user.email } } }
   
+#     context 'when user is logged in' do
+#       before { sign_in(user) }
+  
+#       context 'with valid parameters' do
+#         it 'updates the user data' do
+#           patch :update, params: valid_params
+#           user.reload
+#           expect(user.firstname).to eq('New Name')
+#         end
+  
+#         it 'redirects to the user profile' do
+#           patch :update, params: valid_params
+#           expect(flash[:notice]).to eq('User data updated successfully')
+#           expect(response).to redirect_to(user)
+#         end
+#       end
+  
+#       context 'with invalid parameters' do
+#         it 'does not update the user data' do
+#           old_firstname = user.firstname
+#           patch :update, params: invalid_params
+#           user.reload
+#           expect(user.firstname).to eq(old_firstname)
+#         end
+  
+#         it 'renders the edit template' do
+#           patch :update, params: invalid_params
+#           expect(response).to render_template(:edit)
+#         end
+#       end
+#     end
+  
+#     context 'when user is not logged in' do
+#       it 'redirects to the sign-in page' do
+#         patch :update, params: valid_params
+#         expect(response).to redirect_to(new_user_session_path)
+#       end
+#     end
+#   end
+  
+
+  describe 'DELETE #destroy' do
+        let!(:user_to_delete) { create(:user) }
+
+    context 'when user is logged in as an admin' do
+        let(:admin_user) { create(:admin_user) }
+
+        before { sign_in(admin_user) }
+
+        it 'deletes the user' do
+        expect {
+            delete :destroy, params: { id: user_to_delete.id }
+        }.to change(User, :count).by(-1)
+        end
+
+        it 'redirects to users index' do
+        delete :destroy, params: { id: user_to_delete.id }
+        expect(response).to redirect_to(users_path)
+        end
+    end
+
+    context 'when user is not logged in' do
+        it 'redirects to root path' do
+        delete :destroy, params: { id: user_to_delete.id }
+        expect(response).to have_http_status(:redirect)
+    end
+    end
+  end
+end

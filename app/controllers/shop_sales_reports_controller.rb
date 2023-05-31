@@ -60,9 +60,6 @@ class ShopSalesReportsController < ApplicationController
     end
     
   end
-  
-  
-  
 
   private
 

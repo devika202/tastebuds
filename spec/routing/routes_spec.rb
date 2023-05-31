@@ -338,31 +338,16 @@ RSpec.describe 'Routes', type: :routing do
     end
 
     describe 'admin namespace GET /admin/sales_reports' do
-    it 'routes to admin/shop_sales_reports#admin_index' do
-        expect(get: '/admin/sales_reports').to route_to('shop_sales_reports#admin_index')
+      it 'routes to admin/shop_sales_reports#admin_index' do
+          expect(get: '/admin/sales_reports').to route_to('shop_sales_reports#admin_index')
+      end
     end
-  end
   end
 
   describe 'resources :products do resources :reviews' do
-    it 'routes to reviews#index' do
-      expect(get: '/products/1/reviews').to route_to('reviews#index', product_id: '1')
-    end
-
-    it 'routes to reviews#new' do
-      expect(get: '/products/1/reviews/new').to route_to('reviews#new', product_id: '1')
-    end
 
     it 'routes to reviews#create' do
       expect(post: '/products/1/reviews').to route_to('reviews#create', product_id: '1')
-    end
-
-    it 'routes to reviews#edit' do
-      expect(get: '/products/1/reviews/1/edit').to route_to('reviews#edit', product_id: '1', id: '1')
-    end
-
-    it 'routes to reviews#update' do
-      expect(put: '/products/1/reviews/1').to route_to('reviews#update', product_id: '1', id: '1')
     end
 
     it 'routes to reviews#destroy' do

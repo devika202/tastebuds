@@ -20,4 +20,10 @@ class Product < ApplicationRecord
   def image_presence
     errors.add(:image, "must be attached") unless image.attached?
   end
+
+  def category=(category)
+    self.category_ids = [category.id]
+  end
+
+  
 end

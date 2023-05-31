@@ -69,7 +69,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 4.0'
+  gem 'shoulda-matchers', '~> 5.0'
   # Easy installation and use of chromedriver to run system tests with Chrome
 end
 
