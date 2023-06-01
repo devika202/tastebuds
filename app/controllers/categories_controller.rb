@@ -56,6 +56,7 @@ class CategoriesController < ApplicationController
     
     def index
         @search = Product.ransack(params[:q]) 
+        @categories = Category.all
         @categories = Category.paginate(page: params[:page], per_page: 6)
     end
     

@@ -6,7 +6,6 @@ RSpec.describe 'Routes', type: :routing do
       expect(get: '/order_history/index').to route_to('order_history#index')
     end
   end
-
   describe 'GET /users/index' do
     it 'routes to users#index' do
       expect(get: '/users/index').to route_to('users#index')

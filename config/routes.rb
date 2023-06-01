@@ -21,7 +21,6 @@ Rails.application.routes.draw do
   resources :users, only: [:destroy]
   get '/orders/:id/confirmation', to: 'orders#order_confirmation', as: 'order_confirmation'
   get 'order_history', to: 'order_history#index'
-  resources :carts, only: [:show]
   get '/shops/login', to: 'shops#login'
   post '/shops/login', to: 'shops#login'
   delete '/shops/logout', to: 'shops#logout'

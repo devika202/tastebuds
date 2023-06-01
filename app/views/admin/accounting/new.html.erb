@@ -6,7 +6,6 @@
 
         <% if @accounting_record.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@accounting_record.errors.count, "error") %> prohibited this accounting record from being saved:</h2>
             <ul>
               <% @accounting_record.errors.full_messages.each do |message| %>
                 <li><%= message %></li>

@@ -53,9 +53,6 @@ class CheckoutController < ApplicationController
     end
   end
   
-  
-  
-  
   private
 
   def set_cart
