@@ -1,7 +1,5 @@
 FactoryBot.define do
     factory :cart do
-
-        association :user
+      association :user
     end
   end
-  
