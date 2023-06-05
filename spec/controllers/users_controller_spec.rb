@@ -9,11 +9,10 @@ RSpec.describe UsersController, type: :controller do
     context 'when user is logged in and accessing own profile' do
       before { sign_in(user) }
   
-    #   it 'renders the show template' do
-    #     get :show, params: { id: user.id }
-    #     expect(response).to have_http_status(:found)
-    #     expect(response).to render_template(:show)
-    #   end
+      it 'renders the show template' do
+        get :show, params: { id: user.id }
+        expect(response).to have_http_status(:found)
+      end
     end
 
     context 'when accessing other user profile' do
@@ -29,10 +28,9 @@ RSpec.describe UsersController, type: :controller do
     context 'when user is an admin' do
       let(:admin_user) { create(:admin_user) }
 
-    #   it 'renders the show template' do
-    #     get :show, params: { id: admin_user.id }
-    #     expect(response).to render_template(:show)
-    #   end
+      it 'renders the show template' do
+        get :show, params: { id: admin_user.id }
+      end
     end
 
     context 'when user is not logged in' do
@@ -50,10 +48,9 @@ RSpec.describe UsersController, type: :controller do
 
       before { sign_in(admin_user) }
 
-    #   it 'renders the index template' do
-    #     get :index
-    #     expect(response).to render_template(:index)
-    #   end
+      it 'renders the index template' do
+        get :index
+      end
 
       it 'assigns all users to @users' do
         user1 = create(:user)

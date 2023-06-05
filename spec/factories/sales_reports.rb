@@ -9,8 +9,8 @@ FactoryBot.define do
       shop
       date_of_purchase { Date.today }
       weight { 1 }
-      order_id { 1 }
       weight_unit { "kg" }
+      order_id { association :order }
     end
   end
   

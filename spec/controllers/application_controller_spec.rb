@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'rails_helper'
-
 RSpec.describe ApplicationController, type: :controller do
   include AbstractController::Helpers
   include ActionController::Helpers

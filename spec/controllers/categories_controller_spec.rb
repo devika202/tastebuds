@@ -140,7 +140,7 @@ RSpec.describe CategoriesController, type: :controller do
       
     context "when the category does not exist" do
       before do
-        admin_user.confirm # Confirm the admin user's email address
+        admin_user.confirm
         sign_in admin_user
         delete :destroy, params: { id: category.id }
       end

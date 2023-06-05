@@ -7,11 +7,11 @@ FactoryBot.define do
       updated_at { '2023-05-18 05:35:25' }
       amount { nil }
       source { 'Shop Sale' }
-  
       trait :with_order_id do
         association :order
       end
-  
+      trait :invalid do
+      end
       trait :with_sales_report_id do
         association :sales_report
       end
