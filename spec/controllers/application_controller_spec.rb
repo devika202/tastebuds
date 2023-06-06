@@ -79,7 +79,7 @@ RSpec.describe ApplicationController, type: :controller do
         describe "before_action :authenticate_admin!" do
             context "when current_admin is present" do
                 it "allows access to the action" do
-                    allow(controller).to receive(:current_admin).and_return(build(:admin_user))  # Use :admin_user factory
+                    allow(controller).to receive(:current_admin).and_return(build(:admin_user)) 
                     get :index
                 end
             end
