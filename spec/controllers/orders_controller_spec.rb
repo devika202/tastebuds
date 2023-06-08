@@ -22,13 +22,13 @@ RSpec.describe Admin::OrdersController, type: :controller do
       
       it 'creates a new order' do
         expect {
-          post :create, params: { order: { shipping_name: 'John Doe', shipping_address: '123 Main St' } }
+          post :create, params: { order: { shipping_name: ' Devika', shipping_address: '123 Main St' } }
         }
       end
       
       it 'redirects to the show template of the created order' do
         expect {
-            post :create, params: { order: { shipping_name: 'John Doe', shipping_address: '123 Main St' } }
+            post :create, params: { order: { shipping_name: 'Devika', shipping_address: '123 Main St' } }
           }
       end
     end
@@ -36,7 +36,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
     context 'when user is not authenticated' do
       it 'redirects to the root_url' do
         expect {
-            post :create, params: { order: { shipping_name: 'John Doe', shipping_address: '123 Main St' } }
+            post :create, params: { order: { shipping_name: 'Devika', shipping_address: '123 Main St' } }
           }
         end
     end

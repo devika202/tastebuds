@@ -51,8 +51,8 @@ RSpec.describe CheckoutController, type: :controller do
     let(:order_params) do
       {
         order: {
-          shipping_name: "John Doe",
-          shipping_address: "123 Main St",
+          shipping_name: "Devika",
+          shipping_address: "Kollam, kerala",
           shipping_city: "City",
           shipping_state: "State",
           shipping_zipcode: "12345",

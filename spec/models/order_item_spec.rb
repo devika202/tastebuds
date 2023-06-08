@@ -5,7 +5,7 @@ RSpec.describe OrderItem, type: :model do
 
   let(:user) { create(:user) }
   let(:category) { create(:category) }
-  let(:order) { create(:order, user: user, shipping_name: "John Doe", shipping_address: "123 Main St", shipping_city: "City", shipping_state: "State", shipping_zipcode: "12345", payment_method: "Credit Card") }
+  let(:order) { create(:order, user: user, shipping_name: "Devika", shipping_address: "Kollam, kerala", shipping_city: "City", shipping_state: "State", shipping_zipcode: "12345", payment_method: "Credit Card") }
   let(:product) { create(:product, category_ids: category.id, image: fixture_file_upload('app/assets/images/download.jpg', 'image/jpeg')) }
   let(:order_item) { create(:order_item, order: order, product: product) }
 
