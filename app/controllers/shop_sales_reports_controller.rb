@@ -4,6 +4,7 @@ class ShopSalesReportsController < ApplicationController
 
   def index
     @sales_reports = current_shop.sales_reports
+    @shop = Shop.find(session[:shop_id]) if session[:shop_id]
   end
 
   def new
