@@ -3,8 +3,10 @@ class ShopsController < ApplicationController
     include Rails.application.routes.url_helpers
 
     def dashboard
-        @shop = current_shop
+      @shop = current_shop
+      redirect_to '/shops/login' unless @shop
     end
+    
       
     def index
       @shops = Shop.all
@@ -27,17 +29,17 @@ class ShopsController < ApplicationController
     session[:shop_id] = nil
     redirect_to root_path
     end
-      
+
+    def current_shop
+      @current_shop ||= Shop.find(session[:shop_id]) if session[:shop_id]
+    end
+  
     private
   
     def require_login
       unless current_shop
         redirect_to '/shops/login'
       end
-    end
-  
-    def current_shop
-      @current_shop ||= Shop.find(session[:shop_id]) if session[:shop_id]
     end
   end
   
