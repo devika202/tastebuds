@@ -12,8 +12,7 @@ RSpec.describe ShopSalesReportsController, type: :controller do
   
         it "assigns @sales_reports with current shop sales reports" do
           shop = create(:shop)
-          order = create(:order, user_id: user.id)
-          sales_report = create(:sales_report, shop: shop, order_id: order) 
+          sales_report = create(:sales_report, shop: shop) 
   
           get :index
         end

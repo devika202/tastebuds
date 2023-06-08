@@ -44,16 +44,6 @@ ActiveRecord::Schema.define(version: 2023_05_21_125103) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "authenticators", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
-    t.string "authable_type"
-    t.bigint "authable_id"
-    t.string "email"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["authable_type", "authable_id"], name: "index_authenticators_on_authable_type_and_authable_id"
-  end
-
   create_table "cart_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
     t.bigint "cart_id"
     t.bigint "product_id"
@@ -125,7 +115,6 @@ ActiveRecord::Schema.define(version: 2023_05_21_125103) do
     t.datetime "updated_at"
     t.integer "user_id"
     t.text "image_data"
-    t.integer "category_id"
     t.integer "quantity"
     t.integer "weight"
     t.string "weight_unit"
@@ -151,9 +140,7 @@ ActiveRecord::Schema.define(version: 2023_05_21_125103) do
     t.integer "shop_id"
     t.date "date_of_purchase"
     t.integer "weight"
-    t.bigint "order_id"
     t.string "weight_unit"
-    t.index ["order_id"], name: "index_sales_reports_on_order_id"
   end
 
   create_table "shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb3", force: :cascade do |t|
@@ -193,14 +180,17 @@ ActiveRecord::Schema.define(version: 2023_05_21_125103) do
     t.bigint "phone"
     t.text "address"
     t.string "username"
-    t.string "shop_name"
-    t.boolean "shop_admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "accountings", "orders"
   add_foreign_key "accountings", "sales_reports"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "products"
+  add_foreign_key "carts", "statuses"
+  add_foreign_key "carts", "users"
   add_foreign_key "categories_products", "categories"
   add_foreign_key "categories_products", "products"
   add_foreign_key "order_items", "orders"
@@ -208,5 +198,4 @@ ActiveRecord::Schema.define(version: 2023_05_21_125103) do
   add_foreign_key "orders", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
-  add_foreign_key "sales_reports", "orders"
 end
