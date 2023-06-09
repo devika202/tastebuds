@@ -2,8 +2,8 @@
   <div class="row new1">
     <% products_slice.each do |product| %>
       <div class="col-md-4">
-        <div class="card box-shadow" style="width: 315px; height: 480px;">
-          <%= render 'shared/errors', obj: @product %>
+        <div class="card box-shadow" style="width: 315px; height: 480px;" data-product-id="<%= product.id %>">
+          <%= render 'shared/errors', obj: product %>
           <% if product.image.attached? %>
             <%= image_tag product.image, class: "card-img-top size img-fluid mx-auto d-block", style: "object-fit: cover; width: 100%; height: 200px;" %>
           <% else %>
@@ -22,13 +22,13 @@
             <p class="card-text text-center"><strong>Weight:</strong> <%= "#{product.weight} #{product.weight_unit}" %></p>
             <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product.id), class: "text-success" %> /-</h5>
             <% if product.quantity.to_i <= 0 %>        
-            <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+              <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
             <% else %>
               <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
             <% end %>
-              <div class="text-center">
-                <%= link_to "View", product_path(product.id), class: "btn btn-primary " %>
-              </div>           
+            <div class="text-center">
+              <%= link_to "View", product_path(product.id), class: "btn btn-primary " %>
+            </div>           
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ gem 'ransack'
 gem 'tinymce-rails'
 gem 'webdrivers'
 gem 'simplecov', require: false
+gem 'rails-erd'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
