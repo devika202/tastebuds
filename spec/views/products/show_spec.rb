@@ -4,7 +4,7 @@ RSpec.describe 'products/show', type: :view do
   before(:each) do
     @product = assign(:product, FactoryBot.create(:product))
     @review = Review.new(product: @product)
-    @cart = assign(:cart, FactoryBot.build(:cart)) # Add this line
+    @cart = assign(:cart, FactoryBot.build(:cart)) 
     allow(view).to receive(:user_signed_in?).and_return(true)
     allow(view).to receive(:current_user).and_return(FactoryBot.build(:user))
     allow(view).to receive(:time_ago_in_words).and_return('2 days ago')

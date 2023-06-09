@@ -61,7 +61,7 @@
     <%= f.text_field :shipping_zipcode, class: "form-control", required: true %>
 
     <%= f.label :payment_method %>
-    <%= f.select :payment_method, ["Credit Card", "PayPal", "Cash on Delivery"], {}, class: "form-control", required: true %>
+    <%= f.select :payment_method, ["Credit Card", "PayPal", "Cash on Delivery"], {prompt: 'Select a payment option'}, class: "form-control", required: true %>
 
     <%= f.submit "Place Order", class: "btn btn-success mt-3" %>
   <% end %>
