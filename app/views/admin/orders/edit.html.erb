@@ -33,7 +33,7 @@
         <% else %>
           <%= form_for @order, url: admin_order_path(@order), method: :patch do |f| %>
             <div class="form-group row form-label justify-content-center align-items-center">
-              <%= f.label :Status, class: "col-3 col-form-label text-dark text-center" %>
+              <%= f.label :status, class: "col-3 col-form-label text-dark text-center" %>
               <div class="col-8">
                 <%= f.select :status, options_for_select(Order.statuses.keys, @order.status), {} %>
               </div>

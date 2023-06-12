@@ -15,7 +15,7 @@
       <% @orders.each do |order| %>
         <tr>
           <td scope="row"><%= order.user.email %></td>
-          <td scope="row"><%= number_to_currency(order.total_price, unit: "₹") %></td>
+          <td scope="row"><%= number_to_currency(order.total_price , unit: "₹") %></td>
           <td scope="row"><%= order.status %></td>
           <td scope="row">
             <%= link_to "View", admin_order_path(order), class: "btn btn-primary " %></td>
