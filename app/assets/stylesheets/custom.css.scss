@@ -160,15 +160,17 @@
     width:auto;
   }
 
-.jumbotron {
+  .jumbotron {
     background-image: asset-url('download.jpg');
     background-size: cover;
-    height: 812px;
-    width: 1948px;
-    margin-left: -28px;
-    margin-top: -2px;
+    background-repeat: no-repeat;
+    height: 94vh; 
+    width: 100%; 
+    margin: 0;
     margin-bottom: -116px!important;
+
   }
+  
   .text2{
     margin-top: -76px;
   }
