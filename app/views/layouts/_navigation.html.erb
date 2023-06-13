@@ -64,7 +64,8 @@
           <% end %>   
       </ul>
       <div class="d-flex">
-      <% if user_signed_in? && current_user.admin? %>
+      <% if user_signed_in? %>
+          <% if user_signed_in? && current_user.admin? %>
             <li class="nav-item dropdown">
               <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
                 USERS
@@ -75,7 +76,19 @@
               </div>
             </li>
           <% end %>
+      <% else %>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light dropdown-toggle navbar-brand mb-0 h1" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-target="#navbarDropdownMenus" aria-expanded="false">
+              LOGIN/SIGN UP
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="navbarDropdown">
+              <%= link_to 'LOGIN', new_user_session_path, class: "dropdown-item" %>
+              <%= link_to 'SIGN UP', new_user_registration_path, class: "dropdown-item" %>
+              <%= link_to 'SHOP LOGIN', '/shops/login', class: "dropdown-item" %>
+            </div>
+          </li>
         <% end %>
+      <% end %>
         <% if user_signed_in? %>
           <% unless current_user.admin? %>
             <li class="nav-item">
