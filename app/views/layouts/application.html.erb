@@ -23,6 +23,10 @@
           <%= yield %>    
         </div>    
         <%= render 'layouts/footer' %> 
-        <%= javascript_include_tag 'jquery3', 'popper.js/dist/umd/popper.min.js', 'bootstrap', 'application' %>
+        <%
+=begin%>
+ <%= javascript_include_tag 'jquery3', 'popper.js/dist/umd/popper.min.js', 'bootstrap', 'application' %> 
+<%
+=end%>
   </body>
 </html>

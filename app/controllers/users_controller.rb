@@ -35,7 +35,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @search = Product.ransack(params[:q])
       if @user
-        # Render the edit view for the selected user
       else
         flash[:alert] = "User not found."
         redirect_to root_path
@@ -43,16 +42,11 @@ class UsersController < ApplicationController
     elsif current_user == User.find(params[:id])
       @user = current_user
       @search = Product.ransack(params[:q])
-      # Render the edit view for the current user
     else
       flash[:alert] = "Access denied. You can only edit your own profile or as an admin."
       redirect_to root_path
     end
   end
-  
-  
-  
-
   
   def create
     @search = Product.ransack(params[:q])

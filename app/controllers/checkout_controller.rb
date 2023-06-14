@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
   before_action :set_cart
   include Cartable
+
   def new
     if current_user.cart.cart_items.empty?
       flash[:notice] = "Your cart is empty. Please add some products to proceed to checkout."
@@ -10,8 +11,6 @@ class CheckoutController < ApplicationController
     end
   end
   
-  
-
   def create
     if order_params.present?
       puts "order_params: #{order_params.inspect}"

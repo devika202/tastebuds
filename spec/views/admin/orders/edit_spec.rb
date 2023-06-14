@@ -3,12 +3,12 @@ require 'rails_helper'
 RSpec.describe 'admin/orders/edit', type: :view do
   before(:each) do
     @order = FactoryBot.create(:order)
-    @product = FactoryBot.create(:product)  # Create a product
-    @order_item = FactoryBot.create(:order_item, order: @order, product: @product)  # Create an order item associated with the order and product
+    @product = FactoryBot.create(:product)  
+    @order_item = FactoryBot.create(:order_item, order: @order, product: @product) 
     assign(:order, @order)
   end
 
-  it 'renders the edit order form' do
+  it 'renders the edit order form' do 
     render
 
     expect(rendered).to have_content('Edit Order Status')

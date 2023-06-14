@@ -13,5 +13,5 @@ class Shop < ApplicationRecord
         presence: true
     validates :password_confirmation, 
         presence: true
-    end
+end
   

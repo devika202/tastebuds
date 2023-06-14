@@ -26,8 +26,6 @@ class CategoriesController < ApplicationController
       redirect_to root_path
     end
   end
-  
-  
 
   def edit
       @search = Product.ransack(params[:q])

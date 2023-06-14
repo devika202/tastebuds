@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :orders, through: :order_items
-  has_many :product_categories, dependent: :destroy
+  has_many :product_categories, dependent: :delete_all
   has_many :categories, through: :product_categories
   has_many :cart_items, dependent: :destroy
   has_many :carts, through: :cart_items
@@ -23,7 +23,5 @@ class Product < ApplicationRecord
 
   def category=(category)
     self.category_ids = [category.id]
-  end
-
-  
+  end 
 end

@@ -8,7 +8,7 @@ RSpec.describe Category, type: :model do
   end
 
   describe 'associations' do
-    it { should have_many(:product_categories).dependent(:destroy) }
+    it { should have_many(:product_categories).dependent(:delete_all) }
     it { should have_many(:products).through(:product_categories) }
   end
 end
