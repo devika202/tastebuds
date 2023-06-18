@@ -14,7 +14,7 @@
       <img src="./assets/0.12.3/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2023-06-14T10:57:51+05:30">2023-06-14T10:57:51+05:30</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2023-06-15T14:24:50+05:30">2023-06-15T14:24:50+05:30</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -26695,7 +26695,7 @@
 
             
 
-            <code class="ruby">    let(:user) { FactoryBot.create(:user) }        </code>
+            <code class="ruby">  let(:user) { FactoryBot.create(:user) }        </code>
           </li>
         </div>
       
@@ -26706,7 +26706,7 @@
 
             
 
-            <code class="ruby">    let(:product) { FactoryBot.create(:product) }</code>
+            <code class="ruby">  let(:product) { FactoryBot.create(:product) }</code>
           </li>
         </div>
       
@@ -26728,7 +26728,7 @@
 
             
 
-            <code class="ruby">    describe &quot;POST #create&quot; do</code>
+            <code class="ruby">  describe &quot;POST #create&quot; do</code>
           </li>
         </div>
       
@@ -26739,7 +26739,7 @@
 
             
 
-            <code class="ruby">        before do</code>
+            <code class="ruby">    before do</code>
           </li>
         </div>
       
@@ -26750,7 +26750,7 @@
 
             
 
-            <code class="ruby">          sign_in user</code>
+            <code class="ruby">      sign_in user</code>
           </li>
         </div>
       
@@ -26761,7 +26761,7 @@
 
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -26772,7 +26772,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -26783,7 +26783,7 @@
 
             
 
-            <code class="ruby">        context &quot;when user has a cart&quot; do</code>
+            <code class="ruby">    context &quot;when user has a cart&quot; do</code>
           </li>
         </div>
       
@@ -26794,7 +26794,7 @@
 
             
 
-            <code class="ruby">          let!(:cart) { FactoryBot.create(:cart, user: user) }</code>
+            <code class="ruby">      let!(:cart) { FactoryBot.create(:cart, user: user) }</code>
           </li>
         </div>
       
@@ -26805,7 +26805,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -26816,7 +26816,7 @@
 
             
 
-            <code class="ruby">          it &quot;creates a new cart item and redirects to the cart page&quot; do</code>
+            <code class="ruby">      it &quot;creates a new cart item and redirects to the cart page&quot; do</code>
           </li>
         </div>
       
@@ -26827,7 +26827,7 @@
 
             
 
-            <code class="ruby">            puts product.inspect</code>
+            <code class="ruby">        puts product.inspect</code>
           </li>
         </div>
       
@@ -26838,7 +26838,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -26849,7 +26849,7 @@
 
             
 
-            <code class="ruby">            expect {</code>
+            <code class="ruby">        expect {</code>
           </li>
         </div>
       
@@ -26860,7 +26860,7 @@
 
             
 
-            <code class="ruby">                post :create, params: { cart: { product_id: product.id } }</code>
+            <code class="ruby">            post :create, params: { cart: { product_id: product.id } }</code>
           </li>
         </div>
       
@@ -26871,7 +26871,7 @@
 
             
 
-            <code class="ruby">              }</code>
+            <code class="ruby">          }</code>
           </li>
         </div>
       
@@ -26882,7 +26882,7 @@
 
             
 
-            <code class="ruby">          end</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -26893,7 +26893,7 @@
 
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -26904,7 +26904,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -26915,7 +26915,7 @@
 
             
 
-            <code class="ruby">    </code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -26926,7 +26926,7 @@
 
             
 
-            <code class="ruby">        context &quot;when user does not have a cart&quot; do</code>
+            <code class="ruby">    context &quot;when user does not have a cart&quot; do</code>
           </li>
         </div>
       
@@ -26937,7 +26937,7 @@
 
             
 
-            <code class="ruby">          it &quot;creates a new cart and redirects to the cart page&quot; do</code>
+            <code class="ruby">      it &quot;creates a new cart and redirects to the cart page&quot; do</code>
           </li>
         </div>
       
@@ -26948,7 +26948,7 @@
 
             
 
-            <code class="ruby">            expect {</code>
+            <code class="ruby">        expect {</code>
           </li>
         </div>
       
@@ -26959,7 +26959,7 @@
 
             
 
-            <code class="ruby">              post :create, params: { cart: { product_id: product.id } }</code>
+            <code class="ruby">          post :create, params: { cart: { product_id: product.id } }</code>
           </li>
         </div>
       
@@ -26970,7 +26970,7 @@
 
             
 
-            <code class="ruby">            }</code>
+            <code class="ruby">        }</code>
           </li>
         </div>
       
@@ -26981,7 +26981,7 @@
 
             
 
-            <code class="ruby">            new_cart = Cart.last</code>
+            <code class="ruby">        new_cart = Cart.last</code>
           </li>
         </div>
       
@@ -26992,7 +26992,7 @@
 
             
 
-            <code class="ruby">          end</code>
+            <code class="ruby">      end</code>
           </li>
         </div>
       
@@ -27003,7 +27003,7 @@
 
             
 
-            <code class="ruby">        end</code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -27014,7 +27014,7 @@
 
             
 
-            <code class="ruby">      end</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       

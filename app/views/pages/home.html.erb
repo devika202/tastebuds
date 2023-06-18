@@ -13,7 +13,7 @@
           <%= link_to 'SIGN UP', new_user_registration_path, class: "btn btn-info btn-lg text-dark" %>
           <%= link_to 'SHOP LOGIN', '/shops/login', class: "btn btn-info btn-lg text-dark" %>
         <% else %>
-          <%= link_to 'SHOP', products_path, class: "btn btn-info btn-lg text-dark" %>
+          <%= link_to 'VIEW PRODUCTS', products_path, class: "btn btn-info btn-lg text-dark" %>
         <% end %>
       <% end %>
       <% if @current_shop %>

@@ -1,36 +1,36 @@
 require 'rails_helper'
 
 RSpec.describe CartsController, type: :controller do
-    let(:user) { FactoryBot.create(:user) }        
-    let(:product) { FactoryBot.create(:product) }
+  let(:user) { FactoryBot.create(:user) }        
+  let(:product) { FactoryBot.create(:product) }
 
-    describe "POST #create" do
-        before do
-          sign_in user
-        end
-    
-        context "when user has a cart" do
-          let!(:cart) { FactoryBot.create(:cart, user: user) }
-    
-          it "creates a new cart item and redirects to the cart page" do
-            puts product.inspect
-    
-            expect {
-                post :create, params: { cart: { product_id: product.id } }
-              }
-          end
-        end
-    
-    
-        context "when user does not have a cart" do
-          it "creates a new cart and redirects to the cart page" do
-            expect {
-              post :create, params: { cart: { product_id: product.id } }
-            }
-            new_cart = Cart.last
-          end
-        end
+  describe "POST #create" do
+    before do
+      sign_in user
+    end
+
+    context "when user has a cart" do
+      let!(:cart) { FactoryBot.create(:cart, user: user) }
+
+      it "creates a new cart item and redirects to the cart page" do
+        puts product.inspect
+
+        expect {
+            post :create, params: { cart: { product_id: product.id } }
+          }
       end
+    end
+
+
+    context "when user does not have a cart" do
+      it "creates a new cart and redirects to the cart page" do
+        expect {
+          post :create, params: { cart: { product_id: product.id } }
+        }
+        new_cart = Cart.last
+      end
+    end
+  end
 
   describe 'GET #show' do
     context 'when user is authenticated' do
