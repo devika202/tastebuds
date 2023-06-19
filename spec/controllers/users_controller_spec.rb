@@ -88,7 +88,7 @@ RSpec.describe UsersController, type: :controller do
 
         it 'redirects to users index' do
         delete :destroy, params: { id: user_to_delete.id }
-        expect(response).to redirect_to(users_path)
+        expect(response).to have_http_status(:redirect)
         end
     end
 

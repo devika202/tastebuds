@@ -1,6 +1,6 @@
 class Shop < ApplicationRecord
     has_secure_password
-    has_many :sales_reports
+    has_many :sales_reports, dependent: :destroy
     validates :name, presence: true, length: {minimum: 6, maximum: 30}
     validates :location, presence: true, length: {minimum: 6, maximum: 300}
     validates :contact_info, presence: true, length: {minimum: 6, maximum: 300}
