@@ -14,6 +14,7 @@ admin = User.create(
     address:'Kerala,India',
     phone:'9633826969',
     email:'tastebudsadmin@gmail.com',
+    confirmed_at: Time.now,
     admin: true
   )
 admin = User.create(
@@ -25,6 +26,7 @@ admin = User.create(
   address:'Kerala,India',
   phone:'9633826969',
   email:'tastebudsadmin1@gmail.com',
+  confirmed_at: Time.now,
   admin: true
 )
 admin = User.create(
@@ -36,6 +38,7 @@ admin = User.create(
   address:'Kerala,India',
   phone:'9633826969',
   email:'tastebudsadmin2@gmail.com',
+  confirmed_at: Time.now,
   admin: true
 )
 
