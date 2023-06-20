@@ -12,7 +12,7 @@ admin = User.create(
     password: 'administrator',
     password_confirmation:'administrator',
     address:'Kerala,India',
-    phone:'9633826969',
+    phone:'9687547890',
     email:'tastebudsadmin@gmail.com',
     confirmed_at: Time.now,
     admin: true
@@ -24,7 +24,7 @@ admin = User.create(
   password: 'administrator',
   password_confirmation:'administrator',
   address:'Kerala,India',
-  phone:'9633826969',
+  phone:'9687547890',
   email:'tastebudsadmin1@gmail.com',
   confirmed_at: Time.now,
   admin: true
@@ -36,7 +36,7 @@ admin = User.create(
   password: 'administrator',
   password_confirmation:'administrator',
   address:'Kerala,India',
-  phone:'9633826969',
+  phone:'9687547890',
   email:'tastebudsadmin2@gmail.com',
   confirmed_at: Time.now,
   admin: true
@@ -48,7 +48,7 @@ admin = User.create(
   password: 'administrator',
   password_confirmation:'administrator',
   address:'Kerala,India',
-  phone:'9633826969',
+  phone:'9687547890',
   email:'tastebudsadmin3@gmail.com',
   confirmed_at: Time.now,
   admin: true
