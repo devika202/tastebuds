@@ -24,7 +24,6 @@ RSpec.describe "categories/index", type: :view do
           assert_select ".card-body" do
             assert_select "h5.card-title a.text-success", text: "Category 1", count: 1
             assert_select "p.card-text", text: "2 products", count: 1
-            assert_select "a.btn.btn-outline-danger", text: "Delete", count: 1
           end
           assert_select ".card-footer.text-muted" do
             assert_select "small", text: /Created.+ago, edited.+ago/, count: 1

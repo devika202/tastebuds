@@ -41,5 +41,17 @@ admin = User.create(
   confirmed_at: Time.now,
   admin: true
 )
+admin = User.create(
+  firstname:'Taste Buds',
+  lastname:'Admin',
+  username: 'admin@3',
+  password: 'administrator',
+  password_confirmation:'administrator',
+  address:'Kerala,India',
+  phone:'9633826969',
+  email:'tastebudsadmin3@gmail.com',
+  confirmed_at: Time.now,
+  admin: true
+)
 
   puts "Admin user created: #{admin.username} / #{admin.password}"
