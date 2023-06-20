@@ -16,42 +16,54 @@
         <% end %>
 
         <div class="form-group row form-label">
-          <%= form.label :name,class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= form.label :name %>
+        </div>
           <div class="col-10">
             <%= form.text_field :name,class: "form-control shadow rounded" %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= form.label :email,class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= form.label :email %>
+          </div>
           <div class="col-10">
             <%= form.email_field :email,class: "form-control shadow rounded" %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= form.label :location,class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= form.label :location %>
+          </div>
           <div class="col-10">
             <%= form.text_field :location,class: "form-control shadow rounded" %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= form.label :contact_info,class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= form.label :contact_info %>
+          </div>
           <div class="col-10">
             <%= form.text_field :contact_info,class: "form-control shadow rounded" %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= form.label :password,class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= form.label :password %>
+          </div>
           <div class="col-10">
           <%= form.password_field :password,class: "form-control shadow rounded" %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= form.label :password_confirmation,class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= form.label :password_confirmation %>
+          </div>
           <div class="col-10">
             <%= form.password_field :password_confirmation,class: "form-control shadow rounded" %>
           </div>

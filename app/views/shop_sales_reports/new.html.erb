@@ -14,21 +14,27 @@
       <% end %>      
       <%= form_with(model: [@sales_report], url: shop_sales_reports_path, local: true) do |f| %>
         <div class="form-group row form-label">
-          <%= f.label :product_name,class: "col-2 col-form-label text-dark"  %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :product_name %>
+          </div>
           <div class="col-10">
             <%= f.text_field :product_name,class: "form-control shadow rounded", required: true , placeholder: "Enter Product name"%>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= f.label :price,class: "col-2 col-form-label text-dark"  %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :price  %>
+          </div>
           <div class="col-10">
             <%= f.number_field :price,class: "form-control shadow rounded", step: "0.01", required: true , placeholder: "Enter Product Price"%>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= f.label :weight, class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :weight %>
+          </div>
           <div class="col-5">
             <%= f.number_field :weight, class: "form-control shadow rounded", placeholder: "Weight of Product purchased" %>
           </div>
@@ -39,28 +45,36 @@
         </div>
 
         <div class="form-group row form-label">
-          <%= f.label :quantity,class: "col-2 col-form-label text-dark"  %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :quantity %>
+          </div>
           <div class="col-10">
             <%= f.number_field :quantity,class: "form-control shadow rounded", required: true, placeholder: "No of products purchased" %>
         </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= f.label :total_price,class: "col-2 col-form-label text-dark"  %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :total_price %>
+          </div>
           <div class="col-10">
             <%= f.number_field :total_price,class: "form-control shadow rounded", step: "0.01", required: true, placeholder: "Total Price" %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= f.label :date_of_purchase, class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :date_of_purchase %>
+          </div>
           <div class="col-10">
             <%= f.date_field :date_of_purchase, class: "form-control shadow rounded", required: true, max: Date.today.to_s %>
           </div>
         </div>
 
         <div class="form-group row form-label">
-          <%= f.label :category_id, class: "col-2 col-form-label text-dark" %>
+          <div class= "col-2 col-form-label text-dark">
+            <%= f.label :category_id %>
+          </div>
           <div class="col-10">
             <%= f.collection_select(:category_id, @categories, :id, :name, { prompt: "Select a category" }, { class: "form-control shadow rounded", required: true }) %>
           </div>
