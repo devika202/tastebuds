@@ -22,17 +22,19 @@
             <%= f.submit "FILTER", class: 'btn btn-primary' %>
           <% end %>
 
-
-        <% if current_page?(products_path) %>
-          <form class="d-flex me-5 search-form allignin">
-            <%= search_form_for @search do |f| %>
-              <%= f.text_field :product_title_or_description_cont, class: 'form-control form-control-sm text-dark', placeholder: 'Search by product title or description' %>&nbsp; &nbsp;
-              <button class="btn btn-dark" type="submit">Search</button>
-            <% end %>
-          </form>
-        <% end %>
+        <div class="container" style="max-width: 1250px;">
+          <% if current_page?(products_path) %>
+            <form class="d-flex me-5 search-form ">
+              <%= search_form_for @search do |f| %>
+                <%= f.text_field :product_title_or_description_cont, class: 'form-control form-control-sm text-dark', placeholder: 'Search by product title or description' %>&nbsp; &nbsp;
+                <button class="btn btn-dark" type="submit">Search</button>
+              <% end %>
+            </form>
+          <% end %>
+          </div>
         </div>
       </div>
+
       <div class="container" style="max-width: 1250px;">
         <div class="col-md-10">
           <%= render 'product'%>

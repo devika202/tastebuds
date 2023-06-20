@@ -99,14 +99,30 @@
 }
 
 
+  @media (max-width: 320px) {
+    .container {
+      max-width: 100%;
+      padding: 0 10px; /* Adjust the padding as needed */
+    }
+
+    .search-form {
+      flex-direction: column;
+      align-items: center;
+    }
+
+  }
+
+
+
+
   #sticky-footer {
     width: 100%;
   }
   .search-form {
     position: absolute;
-    top: -128px;
-    right: -1392px;
-    width: 330px;
+    top: -65px;
+    right: -1079px;
+    width: 329px;
 }
   
   .navbar-brand#logo {
