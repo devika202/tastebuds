@@ -9,14 +9,14 @@
         <% unless current_page?(root_path) %>
           <% unless current_page?(shop_dashboard_path) %>
             <% if current_shop %>&nbsp; &nbsp; &nbsp;
-              <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
+              <%= link_to 'DASHBOARD', shop_dashboard_path, class: "btn btn-outline-light#{' active' if current_page?(shop_dashboard_path)}" %>&nbsp; &nbsp;
             <% end %>
           <% end %>
         <% end %>
         <% if current_user && !current_user.admin? %>
-          <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light" %>&nbsp; &nbsp;
+          <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light#{' active' if current_page?(about_path)}" %>&nbsp; &nbsp;
         <% else %>
-            &nbsp; <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
+          &nbsp; <%= link_to 'ABOUT', about_path, class: "btn btn-outline-light#{' active' if current_page?(about_path)}" %> &nbsp; &nbsp; &nbsp;
         <% end %>
         <% unless current_shop %>
           <% if user_signed_in? && current_user.admin? %>
@@ -30,10 +30,10 @@
               </div>
             </li>
           <% else %>
-            &nbsp; <%= link_to "PRODUCTS", products_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
+            &nbsp; <%= link_to "PRODUCTS", products_path, class: "btn btn-outline-light#{' active' if current_page?(products_path)}" %> &nbsp; &nbsp; &nbsp;
           <% end %>
           <% if !current_user || (user_signed_in? && !current_user.admin? && !current_shop) %>
-            <%= link_to "SHOPS", shops_path, class: "btn btn-outline-light" %> &nbsp; &nbsp; &nbsp;
+            <%= link_to "SHOPS", shops_path, class: "btn btn-outline-light#{' active' if current_page?(shops_path)}" %> &nbsp; &nbsp; &nbsp;
           <% end %>
           <% if user_signed_in? %>
             <li class="nav-item">
@@ -94,14 +94,14 @@
             <li class="nav-item">
               <% if current_user %>
                 <% cart = current_user.cart || current_user.create_cart %>
-                <%= link_to "CART", cart_path(cart), class: "btn btn-outline-light" %>
+                <%= link_to "CART", cart_path(cart), class: "btn btn-outline-light#{' active' if current_page?(cart_path(cart))}" %>
                 <% if cart.cart_items.empty? %>
                   <span class="badge bg-danger ms-2">0</span>
                 <% else %>
                   <span class="badge bg-danger ms-2"><%= cart.cart_items.count %></span>
                 <% end %>
               <% else %>
-                <%= link_to "CART", new_cart_path, class: "btn btn-outline-light" %>
+                <%= link_to "CART", new_cart_path, class: "btn btn-outline-light#{' active' if current_page?(new_cart_path)}" %>
               <% end %>
             </li>
           <% end %>

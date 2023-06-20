@@ -3,11 +3,10 @@ class CartItem < ApplicationRecord
   belongs_to :product
   
   def total_price
-    if product
+    if product && product.price.present? && quantity.present?
       product.price * quantity
     else
-      0
+      BigDecimal(0)
     end
   end
-  
 end

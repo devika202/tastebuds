@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "products/_product.html.erb", type: :view do
+  include Devise::Test::ControllerHelpers
+
   let(:product1) { FactoryBot.create(:product) }
   let(:product2) { FactoryBot.create(:product) }
   let(:product3) { FactoryBot.create(:product) }

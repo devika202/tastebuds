@@ -21,14 +21,46 @@
             </p>
             <p class="card-text text-center"><strong>Weight:</strong> <%= "#{product.weight} #{product.weight_unit}" %></p>
             <h5 class="card-title text-center">Price: <%= link_to product.price, product_path(product.id), class: "text-success" %> /-</h5>
-            <% if product.quantity.to_i <= 0 %>        
-              <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+            <% if user_signed_in? %>
+              <% if current_user.admin? %>
+                <div class="text-center">
+                  <% if product.quantity.to_i <= 0 %>        
+                    <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+                  <% else %>
+                    <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
+                  <%end%>
+                  <%= link_to "View", product_path(product.id), class: "btn btn-primary" %>
+                  <%= link_to 'Edit', edit_product_path(product), class: "btn btn-primary" %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+              <% else %>
+                <% if product.quantity.to_i <= 0 %>        
+                  <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+                  <div class="text-center">
+                    <%= link_to "View", product_path(product.id), class: "btn btn-primary" %>
+                  </div>
+                <% else %>
+                  <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
+                  <% if user_signed_in? %>
+              <%= form_for @cart do |f| %>
+                      <%= f.hidden_field :product_id, value: product.id %>
+                      <div class="text-center">
+                        <%= link_to "View", product_path(product.id), class: "btn btn-primary" %>
+                        <%= f.submit 'Add to Cart', class: 'btn btn-primary' %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <%end%>
             <% else %>
-              <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
-            <% end %>
+              <% if product.quantity.to_i <= 0 %>        
+                <p class="text-danger card-title text-center"><strong>AVAILABILITY:</strong> Product Unavailable</p>
+              <% else %>
+                <p class="text-success card-title text-center"><strong>AVAILABILITY:</strong> Product Available</p>
             <div class="text-center">
-              <%= link_to "View", product_path(product.id), class: "btn btn-primary " %>
-            </div>           
+                  <%= link_to "View", product_path(product.id), class: "btn btn-primary" %>
+            </div>
+            <% end %>
+          <% end %>
           </div>
         </div>
       </div>

@@ -7,20 +7,22 @@
     <div class="col-md-3 ">
       <br><br>
       <div class="form-group">
-        <%= search_form_for @search, url: products_path, method: :get, html: { class: 'form-group' } do |f| %>            
-          <h3>Category</h3><br>
-          <%=link_to('View All Products', products_path, class: "btn btn-light") %><br>
-          <% @categories.each do |category| %>
-            <%= check_box_tag 'q[categories_id_eq_any][]', category.id %>
-            <%= category.name %><br>
+          <%= search_form_for @search, url: products_path, method: :get, html: { class: 'form-group' } do |f| %>
+            <h3>Category</h3><br>
+            <%= link_to('View All Products', products_path, class: "btn btn-light") %><br>
+            <% @categories.each do |category| %>
+              <% checked = params[:q] && params[:q][:categories_id_eq_any].present? && params[:q][:categories_id_eq_any].include?(category.id.to_s) %>
+              <%= check_box_tag 'q[categories_id_eq_any][]', category.id, checked %>
+              <%= category.name %><br>
+            <% end %>
+            <br><br>
+            <h3>Price Range</h3><br>
+            <%= f.number_field :price_gteq, class: 'form-control', placeholder: 'Min Price', style: 'width: 300px;', value: params[:q] ? params[:q][:price_gteq] : nil %><br>
+            <%= f.number_field :price_lteq, class: 'form-control', placeholder: 'Max Price', style: 'width: 300px;', value: params[:q] ? params[:q][:price_lteq] : nil %><br>
+            <%= f.submit "FILTER", class: 'btn btn-primary' %>
           <% end %>
-          <br><br>
-          <h3>Price Range</h3><br>
-          <%= f.number_field :price_gteq, class: 'form-control', placeholder: 'Min Price', style: 'width: 300px;' %><br>
-          <%= f.number_field :price_lteq, class: 'form-control', placeholder: 'Max Price', style: 'width: 300px;' %><br>
-          <%= f.submit "FILTER",  class: 'btn btn-primary' %>
-        <% end %>
-      
+
+
         <% if current_page?(products_path) %>
           <form class="d-flex me-5 search-form">
             <%= search_form_for @search do |f| %>

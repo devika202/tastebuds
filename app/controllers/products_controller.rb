@@ -27,6 +27,12 @@ class ProductsController < ApplicationController
     @search = Product.includes(:categories).ransack(params[:q])
     @products = @search.result.includes(:categories).paginate(page: params[:page], per_page: 9)
     @categories = Category.all
+    if user_signed_in?
+      @cart = current_user.cart || current_user.build_cart
+    else
+      @cart = Cart.new
+    end
+  
   end
   
   

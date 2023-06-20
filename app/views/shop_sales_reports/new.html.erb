@@ -33,7 +33,7 @@
             <%= f.number_field :weight, class: "form-control shadow rounded", placeholder: "Weight of Product purchased" %>
           </div>
           <div class="col-5">
-            <%= f.select :weight_unit, options_for_select(["gm", "kg"]), { prompt: 'Select a unit' }, { class: "form-control shadow rounded" } %>
+            <%= f.select :weight_unit, options_for_select(["gm", "kg", "ltr", "ml"]), { prompt: 'Select a unit' }, { class: "form-control shadow rounded" } %>
           </div>
 
         </div>
