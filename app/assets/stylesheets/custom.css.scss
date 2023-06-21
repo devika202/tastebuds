@@ -38,19 +38,15 @@
   .navbar-collapse {
     justify-content: flex-start;
   }
-  
   .navbar-nav {
     margin-bottom: 0;
   }
-
   .navbar-nav .nav-item {
     margin-right: 10px;
   }
-
   .navbar-nav .nav-link {
     padding: 0.5rem;
   }
-
   .navbar-nav .dropdown-menu {
     position: static !important;
     float: none;
@@ -60,7 +56,6 @@
     border: none;
     box-shadow: none;
   }
-
   .navbar-toggler {
     margin-right: 0;
   }
@@ -70,11 +65,9 @@
   .navbar-collapse {
     display: none;
   }
-
   .navbar-toggler {
     display: block;
   }
-
   .navbar-expanded .navbar-collapse {
     display: block;
   }
@@ -86,34 +79,27 @@
     max-width: 315px;
     margin-bottom: 20px;
   }
-
   .new1 .card {
     width: 100%;
     max-width: 315px;
     height: auto;
   }
-
   .new1 .card-img-top {
     height: 200px;
   }
 }
 
 
-  @media (max-width: 320px) {
+@media (max-width: 320px) {
     .container {
       max-width: 100%;
-      padding: 0 10px; /* Adjust the padding as needed */
+      padding: 0 10px; 
     }
-
     .search-form {
       flex-direction: column;
       align-items: center;
     }
-
   }
-
-
-
 
   #sticky-footer {
     width: 100%;
