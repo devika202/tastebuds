@@ -702,15 +702,6 @@
           1
         ]
       },
-      "/home/devika/rails/taste_buds/config/initializers/form_error_handling.rb": {
-        "lines": [
-          null,
-          1,
-          4,
-          null,
-          null
-        ]
-      },
       "/home/devika/rails/taste_buds/config/initializers/inflections.rb": {
         "lines": [
           null,
@@ -6498,6 +6489,6 @@
         ]
       }
     },
-    "timestamp": 1687256630
+    "timestamp": 1687402773
   }
 }
